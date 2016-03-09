@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<p:dialog header="Инвалидность" widgetVar="personDisabilityDialog" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+		<h:form id="personDisabilityDialogForm">
+			<p:panelGrid rendered="#{personDisabilityBean.selection != null}">
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Установлено:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:selectOneMenu value="#{personDisabilityBean.selection.settingType}">
+                           <f:selectItems value="#{personDisabilityBean.settingTypes}" var="settingType" itemLabel="#{settingType.label}" itemValue="#{settingType}"/>
+                        </p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="На дату" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:calendar value="#{personDisabilityBean.selection.settingDate}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Группа" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:selectOneMenu value="#{personDisabilityBean.selection.group}">
+                           <f:selectItems value="#{personDisabilityBean.groups}" var="group" itemLabel="#{group.label}" itemValue="#{group}"/>
+                        </p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Серия" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personDisabilityBean.selection.documentSerial}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Номер" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personDisabilityBean.selection.documentNumber}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Установлено до" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:calendar value="#{personDisabilityBean.selection.limitation}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton actionListener="#{personDisabilityBean.update()}" value="Ok" oncomplete="PF('personDisabilityDialog').hide()" update=":personDialogForm" />
+				<p:commandButton value="Cancel" onclick="PF('personDisabilityDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+</ui:composition>

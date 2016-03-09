@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<h:form id="serviceTableForm">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:dataTable value="#{serviceBean}" id="serviceTable" var="service" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{serviceBean.selection}" lazy="true" selectionMode="single">
+			<p:ajax event="rowSelect" oncomplete="PF('serviceDialog').show()" update=":serviceDialogForm" />
+		
+			<p:column headerText="Наименование" filterBy="#{service.name}" filterMatchMode="contains">
+				<h:outputText value="#{service.name}" />
+			</p:column>
+			
+			<p:column headerText="Полное наименование" filterBy="#{service.fullname}" filterMatchMode="contains">
+				<h:outputText value="#{service.fullname}" />
+			</p:column>
+			
+			<p:column styleClass="ui_button_column" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+				<p:commandButton icon="ui-icon-trash" title="Удалить" action="#{serviceBean.deleteService(service)}" update=":serviceTableForm :navigationFrom" />
+			</p:column>
+			
+			<f:facet name="footer" style="text-align:right;">
+				<p:commandButton value="Добавить новое мероприятие" actionListener="#{serviceBean.prepareInsert()}" oncomplete="PF('serviceDialog').show()" update=":serviceDialogForm" />
+			</f:facet>
+		</p:dataTable>
+	</h:form>
+	
+	<ui:include src="/private/snippets/dialogs/ServiceDialog.xhtml" />
+</ui:composition>

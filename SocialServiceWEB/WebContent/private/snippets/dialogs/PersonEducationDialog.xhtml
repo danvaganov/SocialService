@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<p:dialog header="Образование" widgetVar="personEducationDialog" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+		<h:form id="personEducationDialogForm">
+			<p:panelGrid rendered="#{personEducationBean.selection != null}">
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Образование:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:autoComplete dropdown="true" value="#{personEducationBean.selection.education}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{educationConverter}" completeMethod="#{educationBean.complete}" size="50" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Учереждение" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personEducationBean.selection.institution}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Дата окончания" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:calendar value="#{personEducationBean.selection.expiration}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Специальность" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personEducationBean.selection.specialty}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton actionListener="#{personEducationBean.update()}" value="Ok" oncomplete="PF('personEducationDialog').hide()" update=":personDialogForm" />
+				<p:commandButton value="Cancel" onclick="PF('personEducationDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+</ui:composition>
+
+

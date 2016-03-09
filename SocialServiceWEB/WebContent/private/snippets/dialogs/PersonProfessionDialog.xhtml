@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<p:dialog header="Мероприятия" widgetVar="serviceDialog" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+		<h:form id="serviceDialogForm">
+			<p:panelGrid rendered="#{personProfessionBean.selection != null}">
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Профессия:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:autoComplete dropdown="true" value="#{personProfessionBean.selection.profession}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{professionConverter}" completeMethod="#{professionBean.complete}" size="50" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Место работы:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personProfessionBean.selection.organization}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Адрес:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personProfessionBean.selection.address}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton actionListener="#{personProfessionBean.update()}" value="Ok" oncomplete="PF('personProfessionDialog').hide()" update=":personDialogForm" />
+				<p:commandButton value="Cancel" onclick="PF('personProfessionDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+</ui:composition>

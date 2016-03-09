@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<h:form id="personTableForm">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:dataTable value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personBean.selection}" lazy="true" selectionMode="single">
+			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
+
+			<p:column headerText="Имя" filterBy="#{person.namePerson}" filterMatchMode="contains">
+				<h:outputText value="#{person.namePerson}" />
+			</p:column>
+
+			<p:column headerText="Фамилия" filterBy="#{person.surnamePerson}" filterMatchMode="contains">
+				<h:outputText value="#{person.surnamePerson}" />
+			</p:column>
+
+			<p:column headerText="Отчество" filterBy="#{person.patronymicPerson}" filterMatchMode="contains">
+				<h:outputText value="#{person.patronymicPerson}" />
+			</p:column>
+
+			<p:column headerText="Дата рождения">
+				<h:outputText value="#{person.birthdayPerson}">
+					<f:convertDateTime pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column styleClass="ui_button_column">
+				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.deletePerson(person)}" update=":personTableForm :navigationFrom" />
+			</p:column>
+
+			<f:facet name="footer" style="text-align:right;">
+				<p:commandButton value="Добавить новый пункт" actionListener="#{personBean.prepareInsert()}" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
+				<p:commandButton value="Импорт" actionListener="#{XMLDataBean.importXML()}" update="@none" />
+
+			</f:facet>
+		</p:dataTable>
+		<h:form enctype="multipart/form-data;charset=UTF-8">
+		    <p:fileUpload fileUploadListener="#{XMLDataBean.importXML}" dragDropSupport="false" sizeLimit="100000" fileLimit="3" mode="advanced"/>
+		</h:form>
+	</h:form>
+
+	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" />
+</ui:composition>

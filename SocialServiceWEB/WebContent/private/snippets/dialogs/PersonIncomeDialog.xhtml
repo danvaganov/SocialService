@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<p:dialog header="Источники дохода" widgetVar="personIncomeDialog" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+		<h:form id="personIncomeDialogForm">
+			<p:panelGrid rendered="#{personIncomeBean.selection != null}">
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Источник:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:autoComplete dropdown="true" value="#{personIncomeBean.selection.income}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{incomeConverter}" completeMethod="#{incomeBean.complete}" size="50" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Сумма:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{personIncomeBean.selection.sum}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="На дату:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:calendar value="#{personIncomeBean.selection.date}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton actionListener="#{personIncomeBean.update()}" value="Ok" oncomplete="PF('personIncomeDialog').hide()" update=":personDialogForm" />
+				<p:commandButton value="Cancel" onclick="PF('personIncomeDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+</ui:composition>
