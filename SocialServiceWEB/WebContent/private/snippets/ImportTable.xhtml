@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<h:form >
+		<p:fileUpload fileUploadListener="#{XMLDataBean.upload}" mode="advanced" allowTypes="/(\.|\/)(xml)$/" update=":importTableForm" auto="true" />
+	</h:form>
+	<h:form id="importTableForm">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+
+		<p:panel header="Организация">
+			<h:panelGrid columns="2" columnClasses="label, value">
+				<h:outputText value="Наименование:" />
+				<h:outputText value="#{XMLDataBean.ipr.organization.NAMEORGANIZATION}" />
+
+				<h:outputText value="ИНН:" />
+				<h:outputText value="#{XMLDataBean.ipr.organization.INNORGANIZATION}" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable value="#{XMLDataBean.ipr.person}" id="personTable" var="person">
+			<p:column headerText="Имя">
+				<h:outputText value="#{person.NAME}" />
+			</p:column>
+
+			<p:column headerText="Фамилия">
+				<h:outputText value="#{person.SURNAME}" />
+			</p:column>
+
+			<p:column headerText="Отчество">
+				<h:outputText value="#{person.PATRONYMIC}" />
+			</p:column>
+
+			<f:facet name="footer" style="text-align:right;">
+				<p:commandButton value="Импорт" actionListener="#{XMLDataBean.persist}" update="@none" />
+			</f:facet>
+		</p:dataTable>
+	</h:form>
+</ui:composition>

@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 
-import jersey.repackaged.com.google.common.io.ByteStreams;
 import ru.bisoft.socialservice.ejb.dao.PersonDocumentEJB;
 import ru.bisoft.socialservice.model.PersonDocument;
 
