@@ -4,6 +4,7 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +52,6 @@ public class Person {
 	private Date birthdayPerson;
 	@Lob
 	@Column(name = "FOTO_PERSON")
-	@Basic
 	private byte[] foto;
 	
 	
@@ -126,6 +126,12 @@ public class Person {
 	}
 	public void setPassport(Passport passport) {
 		this.passport = passport;
+	}
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 	public List<PersonOrganization> getPersonOrganizationList() {
 		return personOrganizationList;

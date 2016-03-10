@@ -1,5 +1,6 @@
 package ru.bisoft.socialservice.jsf.bean;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +11,10 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
+import org.primefaces.model.StreamedContent;
 
 import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.model.Person;
@@ -30,6 +33,8 @@ public class PersonBean extends LazyDataModel<Person> {
 	LoginBean loginBean;
 	
 	Person selection;
+	
+	private StreamedContent foto;
 	
 	public PersonBean() {
 		super();
@@ -60,6 +65,16 @@ public class PersonBean extends LazyDataModel<Person> {
 	@Override
 	public Person getRowData(String rowKey) {
 		return personEJB.findById(Integer.valueOf(rowKey));
+	}
+	
+	public StreamedContent getFoto()
+	{
+		System.err.println("Lenght foto: " + selection.getFoto().length);
+		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png"); 
+	}
+
+	public void setFoto(StreamedContent foto) {
+		this.foto = foto;
 	}
 
 	public Person getSelection() {
