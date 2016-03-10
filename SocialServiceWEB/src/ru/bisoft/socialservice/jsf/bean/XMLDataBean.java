@@ -19,10 +19,8 @@ import ru.bisoft.socialservice.model.Organization;
 import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonDocument;
 import ru.bisoft.socialservice.model.PersonEducation;
+import ru.bisoft.socialservice.model.PersonOrganization;
 
-/*
- * ¡ËÌ111
- */
 public class XMLDataBean {
 	@EJB
 	PersonEJB personEJB;
@@ -46,9 +44,9 @@ public class XMLDataBean {
 	}
 
 	public void persist() throws Exception {
-		Organization organization = organizationEJB.findByName(ipr.getOrganization().getNAMEORGANIZATION());
+		Organization organization = null;//organizationEJB.findByName(ipr.getOrganization().getNAMEORGANIZATION());
 		if (organization == null)
-			organization = organizationEJB.findByINN(ipr.getOrganization().getINNORGANIZATION());
+			organization = organizationEJB.findByINN("123123");//ipr.getOrganization().getINNORGANIZATION());
 		if (organization == null) {
 			organization = new Organization();
 			organization.setNameOrganization(ipr.getOrganization().getNAMEORGANIZATION().trim());
@@ -67,13 +65,20 @@ public class XMLDataBean {
 
 				personEJB.insert(person);
 			}
+			
+			PersonOrganization personOrganization = new PersonOrganization(organization, person);
+			if (!organization.getPersonOrganizations().contains(personOrganization))
+				person.getPersonOrganizationList().add(personOrganization);
+			
 			for (ADDITIONALDATATYPE additionnalDataType : personType.getADDITIONALDATALIST().getADDITIONALDATA()) {
+				if (person.getPersonDocumentList().contains(additionnalDataType)) continue;
 				PersonDocument personDocument = new PersonDocument();
 				personDocument.setName(additionnalDataType.getNAMEDOC());
 				personDocument.setCopy(additionnalDataType.getSCAN());
 				person.getPersonDocumentList().add(personDocument);
 				personDocument.setPerson(person);
 			}
+			
 			for (EDUCATIONPERSONTYPE educationPersonType : personType.getEDUCATIONPERSONLIST().getEDUCATIONPERSON()) {
 				if (person.getPersonEducationList().contains(educationPersonType)) continue;
 				PersonEducation personEducation = new PersonEducation();
@@ -84,11 +89,7 @@ public class XMLDataBean {
 				personEducation.setPerson(person);
 			}
 			
-			
-			
-			
 			personEJB.update(person);
-
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success", "Success"));

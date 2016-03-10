@@ -9,11 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "organization_seq", sequenceName = "organization_seq", allocationSize = 1)
+@NamedQueries({ 
+	@NamedQuery(name = "Organization.findByName", query = "SELECT O FROM Organization O WHERE TRIM(LOWER(O.nameOrganization)) = TRIM(LOWER(:nameOrganization))"), 
+	@NamedQuery(name = "Organization.findByINN", query = "SELECT O FROM Organization O WHERE TRIM(O.innOrganization) = TRIM(:innOrganization)") 
+})
 public class Organization {
 	
 	@Column(name = "FULL_NAME_ORGANIZATION")

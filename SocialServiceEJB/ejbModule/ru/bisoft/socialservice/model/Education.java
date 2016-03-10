@@ -1,22 +1,23 @@
 package ru.bisoft.socialservice.model;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.SEQUENCE;
-
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "EDUCATION")
 @SequenceGenerator(name = "EDUCATION_GEN_ID", sequenceName = "EDUCATION_GEN_ID", allocationSize = 1, initialValue = 1)
+@NamedQuery(name = "Education.findByName", query = "SELECT E FROM Education E WHERE TRIM(LOWER(E.nameEducation)) = TRIM(LOWER(:nameEducation))")
 public class Education implements Serializable{
 
 	/**

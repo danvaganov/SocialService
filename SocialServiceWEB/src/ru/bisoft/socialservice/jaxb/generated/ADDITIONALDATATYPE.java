@@ -13,6 +13,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import ru.bisoft.socialservice.model.PersonDocument;
+
 
 /**
  * <p>Java class for ADDITIONALDATATYPE complex type.
@@ -112,4 +114,16 @@ public class ADDITIONALDATATYPE {
         this.keydoc = value;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof PersonDocument)
+		{
+			PersonDocument personDocument = (PersonDocument)obj;
+			return this.namedoc.equals(personDocument.getName());
+		}
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+    
 }

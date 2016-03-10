@@ -1,16 +1,15 @@
 package ru.bisoft.socialservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
 import static javax.persistence.GenerationType.SEQUENCE;
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.CascadeType.REMOVE;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "PERSON_ORGANIZATION")
@@ -63,4 +62,15 @@ public class PersonOrganization {
 		this.organization = organization;
 		this.person = person;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof PersonOrganization)
+		{
+			PersonOrganization personOrganization = (PersonOrganization)obj;
+			return this.person.getKeyPerson() == personOrganization.getPerson().getKeyPerson() && this.organization.getKeyOrganization() == personOrganization.getOrganization().getKeyOrganization();
+		}
+		return super.equals(obj);
+	}
+	
 }
