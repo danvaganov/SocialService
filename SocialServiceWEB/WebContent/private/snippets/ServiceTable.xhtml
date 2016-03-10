@@ -4,7 +4,7 @@
 	<h:form id="serviceTableForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:dataTable value="#{serviceBean}" id="serviceTable" var="service" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{serviceBean.selection}" lazy="true" selectionMode="single">
-			<p:ajax event="rowSelect" oncomplete="PF('serviceDialog').show()" update=":serviceDialogForm" />
+			<p:ajax event="rowSelect" oncomplete="#{facesContext.externalContext.isUserInRole('admin')?'PF(\'serviceDialog\').show()':''} " update=":serviceDialogForm" />
 		
 			<p:column headerText="Наименование" filterBy="#{service.name}" filterMatchMode="contains">
 				<h:outputText value="#{service.name}" />

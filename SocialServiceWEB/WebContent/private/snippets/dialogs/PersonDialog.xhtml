@@ -5,6 +5,10 @@
 			<p:tabView id="personTabView" dynamic="true">
 				<p:tab title="Основные сведения">
 					<p:panelGrid rendered="#{personBean.selection != null}">
+						<f:facet name="header">
+					        <p:graphicImage name="http://31.media.tumblr.com/avatar_fe9069f16640_128.png" />
+					    </f:facet>
+					
 						<p:row>
 							<p:column style="font-weight: bold;">
 								<h:outputText value="Имя:" />

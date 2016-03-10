@@ -10,11 +10,13 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -46,6 +48,11 @@ public class Person {
 	@Column(name = "BIRTHDAY_PERSON")
 	@Temporal(DATE)
 	private Date birthdayPerson;
+	@Lob
+	@Column(name = "FOTO_PERSON")
+	@Basic
+	private byte[] foto;
+	
 	
 	@Embedded
 	@AttributeOverrides({ 
