@@ -24,34 +24,44 @@ public class EducationEJB {
 	@PersistenceContext
 	EntityManager em;
 
-    /**
-     * Default constructor. 
-     */
-    public EducationEJB() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public EducationEJB() {
+		// TODO Auto-generated constructor stub
+	}
 
-	//@Override
+	// @Override
 	public Education findById(Integer ID) {
 		return em.find(Education.class, ID);
 	}
-	
-	public List<Education> find(Integer startIndex, Integer pageSize, Map<String, Object> filters)
-	{
+
+	public Education find(String name) {
+		try {
+			return em.createNamedQuery("Education.findByName", Education.class).setParameter("nameEducation", name).getSingleResult();
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
+
+	public List<Education> find(Integer startIndex, Integer pageSize, Map<String, Object> filters) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		List<Predicate> predicateList = new ArrayList<Predicate>();
-		
+
 		CriteriaQuery<Education> query = cb.createQuery(Education.class);
 		Root<Education> root = query.from(Education.class);
-		//Join<Person, PersonOrganization> join = root.join("personOrganizationList");
+		// Join<Person, PersonOrganization> join =
+		// root.join("personOrganizationList");
 		query.select(root);
 		query.orderBy(cb.asc(root.get("keyEducation")));
-		//predicateList.add(cb.equal(join.<String>get("organization"), organization));
-		
-		for (Map.Entry<String, Object> entry: filters.entrySet())
-			predicateList.add(cb.like(cb.lower(root.<String>get(entry.getKey())), entry.getValue().toString() + "%"));
+		// predicateList.add(cb.equal(join.<String>get("organization"),
+		// organization));
+
+		for (Map.Entry<String, Object> entry : filters.entrySet())
+			predicateList.add(cb.like(cb.lower(root.<String> get(entry.getKey())), entry.getValue().toString() + "%"));
 		query.where(cb.and(predicateList.toArray(new Predicate[predicateList.size()])));
-		
+
 		return em.createQuery(query).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
 	}
 }

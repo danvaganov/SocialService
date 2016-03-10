@@ -31,7 +31,8 @@ import javax.persistence.Temporal;
 	@NamedQuery(name="Person.findByOrganization", query="SELECT p FROM Person p JOIN p.personOrganizationList po WHERE po.organization = :organization"),
 	@NamedQuery(name="Person.findByPassport", query="SELECT p FROM Person p WHERE p.passport.serialPassport = :serialPassport AND p.passport.numberPassport = :numberPassport AND p.passport.issueDatePassport = :issueDatePassport"),
 	@NamedQuery(name="Person.getCount", query="SELECT COUNT(p) FROM Person p"),
-	@NamedQuery(name="Person.getCountByOrganization", query="SELECT COUNT(p) FROM Person p JOIN p.personOrganizationList po WHERE po.organization = :organization")
+	@NamedQuery(name="Person.getCountByOrganization", query="SELECT COUNT(p) FROM Person p JOIN p.personOrganizationList po WHERE po.organization = :organization"),
+	@NamedQuery(name = "Person.findByFIO", query = "SELECT P FROM Person P WHERE COALESCE(TRIM(LOWER(P.namePerson)),'') = COALESCE(TRIM(LOWER(:namePerson)),'') AND COALESCE(TRIM(LOWER(P.surnamePerson)),'') = COALESCE(TRIM(LOWER(:surnamePerson)),'') AND COALESCE(TRIM(LOWER(P.patronymicPerson)),'') = COALESCE(TRIM(LOWER(:patronymicPerson)),'')")
 })
 @SequenceGenerator(name = "PERSON_GEN_ID", sequenceName = "PERSON_GEN_ID", allocationSize = 1, initialValue = 1)
 public class Person {
@@ -208,5 +209,9 @@ public class Person {
 	public void removePersonService(PersonService personService)
 	{
 		this.personServicetList.remove(personService);
+	}
+	public void addPersonOrganization(PersonOrganization personOrganization)
+	{
+		this.personOrganizationList.add(personOrganization);
 	}
 }

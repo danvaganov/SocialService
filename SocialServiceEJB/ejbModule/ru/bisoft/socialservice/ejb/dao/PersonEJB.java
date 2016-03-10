@@ -27,81 +27,89 @@ import ru.bisoft.socialservice.model.PersonOrganization;
 public class PersonEJB {
 	@PersistenceContext
 	EntityManager em;
-    /**
-     * Default constructor. 
-     */
-    public PersonEJB() {
-    }
-    
-    //@Override
+
+	/**
+	 * Default constructor.
+	 */
+	public PersonEJB() {
+	}
+
+	// @Override
 	public List<Person> findAll() {
 		return em.createNamedQuery("Person.findAll", Person.class).getResultList();
 	}
 
-	//@Override
+	// @Override
 	public List<Person> find(Integer startIndex, Integer pageSize) {
 		return em.createNamedQuery("Person.findAll", Person.class).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
 	}
-	
-	public List<Person> findByEmail (String emailPerson)
-	{
+
+	public List<Person> findByEmail(String emailPerson) {
 		return em.createNamedQuery("Person.findByEmail", Person.class).setParameter("emailPerson", emailPerson).getResultList();
 	}
-	
-	public Person findByPassport (Passport passport)
-	{
+
+	public Person findByFIO(String name, String surname, String patronymic) {
+		try {
+			return em.createNamedQuery("Person.findByFIO", Person.class).setParameter("namePerson", name).setParameter("surnamePerson", surname).setParameter("patronymicPerson", patronymic).getSingleResult();
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
+
+	public Person findByPassport(Passport passport) {
 		return em.createNamedQuery("Person.findByPassport", Person.class).setParameter("serialPassport", passport.getSerialPassport()).setParameter("numberPassport", passport.getNumberPassport()).setParameter("issueDatePassport", passport.getIssueDatePassport()).getSingleResult();
 	}
-	//@Override
+
+	// @Override
 	public Person findById(Integer ID) {
 		return em.find(Person.class, ID);
 	}
 
-	//@Override
+	// @Override
 	public List<Person> find(Organization organization, Integer startIndex, Integer pageSize) {
 		return em.createNamedQuery("Person.findByOrganization", Person.class).setParameter("organization", organization).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
 	}
 
-	public List<Person> find(Organization organization, Integer startIndex, Integer pageSize, Map<String, Object> filters)
-	{
+	public List<Person> find(Organization organization, Integer startIndex, Integer pageSize, Map<String, Object> filters) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		List<Predicate> predicateList = new ArrayList<Predicate>();
-		
+
 		CriteriaQuery<Person> query = cb.createQuery(Person.class);
 		Root<Person> root = query.from(Person.class);
 		Join<Person, PersonOrganization> join = root.join("personOrganizationList");
 		query.select(root);
 		query.orderBy(cb.asc(root.get("keyPerson")));
-		predicateList.add(cb.equal(join.<String>get("organization"), organization));
-		
-		for (Map.Entry<String, Object> entry: filters.entrySet())
-			predicateList.add(cb.like(cb.lower(root.<String>get(entry.getKey())), entry.getValue().toString() + "%"));
+		predicateList.add(cb.equal(join.<String> get("organization"), organization));
+
+		for (Map.Entry<String, Object> entry : filters.entrySet())
+			predicateList.add(cb.like(cb.lower(root.<String> get(entry.getKey())), entry.getValue().toString() + "%"));
 		query.where(cb.and(predicateList.toArray(new Predicate[predicateList.size()])));
-		
+
 		return em.createQuery(query).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
 	}
 
-	//@Override
+	// @Override
 	public void insert(Person arg0) {
 		em.persist(arg0);
 	}
 
-	//@Override
+	// @Override
 	public void update(Person arg0) {
 		em.merge(arg0);
 	}
 
-	//@Override
+	// @Override
 	public void delete(Person arg0) {
 		em.remove(arg0);
 	}
 
-	//@Override
+	// @Override
 	public void delete(Integer ID) {
 		em.remove(em.find(Person.class, ID));
 	}
 
-	//@Override
+	// @Override
 	public Long getCount(Organization organization) {
 		return (Long) em.createNamedQuery("Person.getCountByOrganization").setParameter("organization", organization).getSingleResult();
 	}
