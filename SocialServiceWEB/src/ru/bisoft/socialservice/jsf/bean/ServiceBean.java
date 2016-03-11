@@ -23,8 +23,6 @@ public class ServiceBean extends LazyDataModel<Service>{
 	@EJB
 	ServiceEJB serviceEJB;
 	
-	LoginBean loginBean;
-	
 	Service selection;
 	
 	public ServiceBean() {

@@ -6,6 +6,10 @@
 		<p:dataTable value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personBean.selection}" lazy="true" selectionMode="single">
 			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
 
+			<p:column style="width:16px">
+	            <p:rowToggler />
+	        </p:column>
+
 			<p:column headerText="Имя" filterBy="#{person.namePerson}" filterMatchMode="contains">
 				<h:outputText value="#{person.namePerson}" />
 			</p:column>
@@ -27,6 +31,35 @@
 			<p:column styleClass="ui_button_column">
 				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.deletePerson(person)}" update=":personTableForm :navigationFrom" />
 			</p:column>
+			
+			<p:rowExpansion>
+				<p:dataTable id="personServiceTable" value="#{personBean.selection.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
+					
+					<p:column headerText="Наименование">
+						<h:outputText value="#{personService.service.name}" />
+					</p:column>
+					
+					<p:column headerText="Дата добавления" width="15%">
+						<h:outputText value="#{personService.date}" />
+					</p:column>
+					
+					<p:column headerText="Статус">
+						<h:outputText value="#{personService.status.label}" />
+					</p:column>
+					
+					<p:column headerText="Поставщик">
+						<h:outputText value="#{personService.organization.nameOrganization}" />
+					</p:column>
+					
+					<p:column styleClass="ui_button_column">
+						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonService(personService)}" update="@form" />
+					</p:column>
+					
+					<f:facet name="footer" style="text-align:right;">
+						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
+					</f:facet>
+				</p:dataTable>
+			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
 				<p:commandButton value="Добавить новый пункт" actionListener="#{personBean.prepareInsert()}" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
@@ -35,4 +68,5 @@
 	</h:form>
 
 	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" />
+	<ui:include src="/private/snippets/dialogs/PersonServiceDialog.xhtml" />
 </ui:composition>

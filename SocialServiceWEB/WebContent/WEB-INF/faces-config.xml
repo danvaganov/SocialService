@@ -116,5 +116,30 @@
  	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.UserBean</managed-bean-class>
  	<managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>personServiceBean</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonServiceBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>personBean</property-name>
+   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
+   <value>#{personBean}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>organizationConverter</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.converter.OrganizationConverter</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>serviceConverter</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.converter.ServiceConverter</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>organizationBean</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.OrganizationBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <application/>
 </faces-config>

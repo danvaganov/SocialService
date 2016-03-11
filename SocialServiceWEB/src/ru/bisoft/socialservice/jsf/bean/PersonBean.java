@@ -69,7 +69,6 @@ public class PersonBean extends LazyDataModel<Person> {
 	
 	public StreamedContent getFoto()
 	{
-		System.err.println("Lenght foto: " + selection.getFoto().length);
 		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png"); 
 	}
 

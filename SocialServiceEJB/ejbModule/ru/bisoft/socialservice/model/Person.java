@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "PERSON")
@@ -52,8 +53,8 @@ public class Person {
 	private Date birthdayPerson;
 	@Lob
 	@Column(name = "FOTO_PERSON")
+	@Basic(fetch = LAZY)
 	private byte[] foto;
-	
 	
 	@Embedded
 	@AttributeOverrides({ 
@@ -122,6 +123,8 @@ public class Person {
 		this.personEducationList = personEducationList;
 	}
 	public Passport getPassport() {
+		if (passport == null)
+			this.passport = new Passport();
 		return passport;
 	}
 	public void setPassport(Passport passport) {
@@ -162,6 +165,13 @@ public class Person {
 	}
 	public void setPersonDocumentList(List<PersonDocument> personDocumentList) {
 		this.personDocumentList = personDocumentList;
+	}
+	
+	public List<PersonService> getPersonServicetList() {
+		return personServicetList;
+	}
+	public void setPersonServicetList(List<PersonService> personServicetList) {
+		this.personServicetList = personServicetList;
 	}
 	public Person() {
 		super();

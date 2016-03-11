@@ -18,7 +18,8 @@ import javax.persistence.SequenceGenerator;
 @SequenceGenerator(name = "organization_seq", sequenceName = "organization_seq", allocationSize = 1)
 @NamedQueries({ 
 	@NamedQuery(name = "Organization.findByName", query = "SELECT O FROM Organization O WHERE TRIM(LOWER(O.nameOrganization)) = TRIM(LOWER(:nameOrganization))"), 
-	@NamedQuery(name = "Organization.findByINN", query = "SELECT O FROM Organization O WHERE TRIM(O.innOrganization) = TRIM(:innOrganization)") 
+	@NamedQuery(name = "Organization.findByINN", query = "SELECT O FROM Organization O WHERE TRIM(O.innOrganization) = TRIM(:innOrganization)"),
+	@NamedQuery(name = "Organization.findById", query = "SELECT O FROM Organization O WHERE TRIM(O.innOrganization) = TRIM(:innOrganization)")
 })
 public class Organization {
 	
