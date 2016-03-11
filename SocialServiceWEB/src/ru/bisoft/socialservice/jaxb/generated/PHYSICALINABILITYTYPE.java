@@ -9,13 +9,16 @@
 package ru.bisoft.socialservice.jaxb.generated;
 
 import java.util.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import ru.bisoft.socialservice.jaxb.adapter.DateAdapter;
+import ru.bisoft.socialservice.model.PersonDisability;
 
 
 /**
@@ -233,5 +236,16 @@ public class PHYSICALINABILITYTYPE {
     public void setCOMMENT(String value) {
         this.comment = value;
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof PersonDisability)
+		{
+			PersonDisability personDisability = (PersonDisability)obj;
+			return this.groupinability == personDisability.getGroup().ordinal();
+		}
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

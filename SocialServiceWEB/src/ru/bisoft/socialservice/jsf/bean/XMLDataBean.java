@@ -15,8 +15,10 @@ import ru.bisoft.socialservice.jaxb.generated.ADDITIONALDATATYPE;
 import ru.bisoft.socialservice.jaxb.generated.EDUCATIONPERSONTYPE;
 import ru.bisoft.socialservice.jaxb.generated.IPR;
 import ru.bisoft.socialservice.jaxb.generated.PERSONTYPE;
+import ru.bisoft.socialservice.jaxb.generated.PHYSICALINABILITYTYPE;
 import ru.bisoft.socialservice.model.Organization;
 import ru.bisoft.socialservice.model.Person;
+import ru.bisoft.socialservice.model.PersonDisability;
 import ru.bisoft.socialservice.model.PersonDocument;
 import ru.bisoft.socialservice.model.PersonEducation;
 import ru.bisoft.socialservice.model.PersonOrganization;
@@ -62,7 +64,8 @@ public class XMLDataBean {
 				person.setSurnamePerson((personType.getSURNAME().substring(0, 1).toUpperCase() + personType.getSURNAME().substring(1)).trim());
 				person.setPatronymicPerson((personType.getPATRONYMIC().substring(0, 1).toUpperCase() + personType.getPATRONYMIC().substring(1)).trim());
 				person.setBirthdayPerson(personType.getBIRTHDAY());
-
+				person.setFoto(personType.getFOTO());
+				
 				personEJB.insert(person);
 			}
 			
@@ -89,9 +92,17 @@ public class XMLDataBean {
 				personEducation.setPerson(person);
 			}
 			
+			for (PHYSICALINABILITYTYPE physicalInabilityType : personType.getPHYSICALINABILITYLIST().getPHYSICALINABILITY()) {
+				if (person.getPersonDisabilityList().contains(physicalInabilityType)) continue;
+				PersonDisability personDisability = new PersonDisability();
+				personDisability.setGroup(PersonDisability.GroupDisability.values()[physicalInabilityType.getGROUPINABILITY()]);
+				personDisability.setSettingType(PersonDisability.SettingType.FIRST);
+				person.getPersonDisabilityList().add(personDisability);
+				personDisability.setPerson(person);
+			}
+			
 			personEJB.update(person);
 		}
-
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success", "Success"));
 	}
 

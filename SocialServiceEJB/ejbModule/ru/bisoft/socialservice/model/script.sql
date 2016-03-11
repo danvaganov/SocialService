@@ -1,6 +1,6 @@
 INSERT INTO organization(key_organization, full_name_organization, inn_organization, name_organization) VALUES (1, 'АСС Бизнес - Софт', '123123', 'АСС Бизнес - Софт');
 INSERT INTO employee(key_employee, name_employee, patronymic_employee, surname_employee, key_organization) VALUES (1, 'Денис', 'Андреевич', 'Ваганов', 1);
-INSERT INTO organization(key_organization, full_name_organization, inn_organization, name_organization) VALUES (2, 'Тестовая', '123123', 'Тестовая');
+INSERT INTO organization(key_organization, full_name_organization, inn_organization, name_organization) VALUES (2, 'Тестовая', '1231231', 'Тестовая');
 INSERT INTO employee(key_employee, name_employee, patronymic_employee, surname_employee, key_organization) VALUES (2, 'Тест', 'Тест', 'Тест', 2);
 
 INSERT INTO tuser(userid_tuser, password_tuser, key_employee) VALUES ('admin', 'admin', 1);    

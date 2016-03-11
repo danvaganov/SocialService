@@ -35,31 +35,5 @@
 		</p:dataTable>
 	</h:form>
 
-	<p:dialog header="Клиент" widgetVar="userDialog" showEffect="fade" hideEffect="fade" resizable="false">
-		<h:form id="userDialogForm">
-			<p:panelGrid rendered="#{userBean.selection != null}">
-				<p:row>
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Имя:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="namePerson" value="#{userBean.selection.userIDTUser}" />
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Фамилия:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="surname" value="#{userBean.selection.passwordTUser}" />
-					</p:column>
-				</p:row>
-			</p:panelGrid>
-
-			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton actionListener="#{userBean.updateTUser}" value="Ok" oncomplete="PF('userDialog').hide()" update=":userTableForm" />
-				<p:commandButton value="Cancel" onclick="PF('userDialog').hide()" process="@none" />
-			</p:outputPanel>
-		</h:form>
-	</p:dialog>
+	<ui:include src="/private/snippets/dialogs/UserDialog.xhtml" />
 </ui:composition>
