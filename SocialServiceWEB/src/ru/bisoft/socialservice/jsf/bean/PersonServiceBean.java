@@ -1,11 +1,14 @@
 package ru.bisoft.socialservice.jsf.bean;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import ru.bisoft.socialservice.ejb.dao.PersonServiceEJB;
 import ru.bisoft.socialservice.model.PersonService;
+import ru.bisoft.socialservice.model.PersonService.PersonServiceStatus;
 import ru.bisoft.socialservice.model.PersonDisability.SettingType;
 
 public class PersonServiceBean {
@@ -21,6 +24,7 @@ public class PersonServiceBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Prepare",  "") );
 		selection = new PersonService();
+		selection.setDate(new Date());
 	}
 	
 	public void update ()
@@ -50,7 +54,7 @@ public class PersonServiceBean {
 		this.selection = selection;
 	}
 	
-	/*public PersonServiceStatus[] getSettingTypes() {
-		return SettingType.values();
-	}*/
+	public PersonServiceStatus[] getStatuses() {
+		return PersonServiceStatus.values();
+	}
 }

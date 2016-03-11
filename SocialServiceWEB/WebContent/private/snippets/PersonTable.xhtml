@@ -33,32 +33,7 @@
 			</p:column>
 			
 			<p:rowExpansion>
-				<p:dataTable id="personServiceTable" value="#{personBean.selection.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-					
-					<p:column headerText="Наименование">
-						<h:outputText value="#{personService.service.name}" />
-					</p:column>
-					
-					<p:column headerText="Дата добавления" width="15%">
-						<h:outputText value="#{personService.date}" />
-					</p:column>
-					
-					<p:column headerText="Статус">
-						<h:outputText value="#{personService.status.label}" />
-					</p:column>
-					
-					<p:column headerText="Поставщик">
-						<h:outputText value="#{personService.organization.nameOrganization}" />
-					</p:column>
-					
-					<p:column styleClass="ui_button_column">
-						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonService(personService)}" update="@form" />
-					</p:column>
-					
-					<f:facet name="footer" style="text-align:right;">
-						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
-					</f:facet>
-				</p:dataTable>
+				<ui:include src="/private/snippets/PersonServiceTable.xhtml" />
 			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
@@ -68,5 +43,4 @@
 	</h:form>
 
 	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" />
-	<ui:include src="/private/snippets/dialogs/PersonServiceDialog.xhtml" />
 </ui:composition>

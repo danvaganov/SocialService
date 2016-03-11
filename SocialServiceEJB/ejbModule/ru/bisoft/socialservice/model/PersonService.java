@@ -101,6 +101,22 @@ public class PersonService {
 		this.document = document;
 	}
 
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public static enum PersonServiceStatus{
 		ASSIGNED("Назначено"), 
 		PROCESS("В обработке"),

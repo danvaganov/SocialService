@@ -31,7 +31,7 @@ public class OrganizationBean extends LazyDataModel<Service>{
 	public List<Organization> complete(String query)
 	{
 		Map<String, Object> filters = new HashMap<String, Object> ();
-		filters.put("name", query);
+		filters.put("nameOrganization", query);
 		return organizationEJB.find(0, 10, filters);
 	}
 }

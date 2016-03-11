@@ -8,7 +8,7 @@
 						<h:outputText value="Мероприятие:" />
 					</p:column>
 					<p:column style="font-weight: bold;">
-						<p:autoComplete dropdown="true" value="#{personServiceBean.selection.service}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{serviceConverter}" completeMethod="#{serviceBean.complete}" size="50" />
+						<p:autoComplete dropdown="true" value="#{personServiceBean.selection.service}" var="e" itemValue="#{e}" itemLabel="#{e.name}" converter="#{serviceConverter}" completeMethod="#{serviceBean.complete}" size="50" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -16,7 +16,7 @@
 						<h:outputText value="Дата:" />
 					</p:column>
 					<p:column style="font-weight: bold;">
-						<p:calendar value="#{personDisabilityBean.selection.settingDate}" pagedate="#{bean.currentTime}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+						<p:calendar value="#{personServiceBean.selection.date}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -38,6 +38,11 @@
 					</p:column>
 				</p:row>
 			</p:panelGrid>
+			
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton actionListener="#{personServiceBean.update()}" value="Ok" oncomplete="PF('personServiceDialog').hide()" update=":personServiceTableForm" />
+				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />
+			</p:outputPanel>
 		</h:form>
 	</p:dialog>
 </ui:composition>

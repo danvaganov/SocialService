@@ -59,7 +59,7 @@ public class OrganizationEJB {
 		CriteriaQuery<Organization> query = cb.createQuery(Organization.class);
 		Root<Organization> root = query.from(Organization.class);
 		query.select(root);
-		query.orderBy(cb.asc(root.get("id")));
+		query.orderBy(cb.asc(root.get("keyOrganization")));
 		
 		for (Map.Entry<String, Object> entry: filters.entrySet())
 			predicateList.add(cb.like(cb.lower(root.<String>get(entry.getKey())), entry.getValue().toString() + "%"));
