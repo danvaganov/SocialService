@@ -1,6 +1,9 @@
 package ru.bisoft.socialservice.model;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+import static javax.persistence.TemporalType.DATE;
+
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "PERSON_SERVICE")
@@ -30,11 +34,19 @@ public class PersonService {
 	@JoinColumn(name = "KEY_SERVICE", referencedColumnName = "KEY_SERVICE")
 	private Service service;
 	
+	@ManyToOne
+	@JoinColumn(name = "KEY_ORGANIZATION", referencedColumnName = "KEY_ORGANIZATION")
+	private Organization organization;
+	
 	@Column(name = "STATUS_PERSON_SERVICE")
 	private PersonServiceStatus status;
 	
 	@Column(name = "COMMENT_PERSON_SERVICE")
 	private String comment;
+	
+	@Column(name = "DATE_PERSON_SERVICE")
+	@Temporal(DATE)
+	private Date date;
 	
 	@Lob
 	@Column(name = "DOCUMENT_PERSON_SERVICE")
