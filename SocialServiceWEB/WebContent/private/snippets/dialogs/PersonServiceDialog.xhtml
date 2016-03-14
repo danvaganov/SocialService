@@ -39,10 +39,10 @@
 				</p:row>
 			</p:panelGrid>
 			
-			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton actionListener="#{personServiceBean.update()}" value="Ok" oncomplete="PF('personServiceDialog').hide()" update=":personServiceTableForm" />
-				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />
-			</p:outputPanel>
+<!-- 			<p:outputPanel style="text-align:right;padding:2px;"> -->
+<!-- 				<p:commandButton actionListener="#{personServiceBean.update()}" value="Ok" oncomplete="PF('personServiceDialog').hide()" update=":personTableForm:personTable:personServiceTableForm" /> -->
+<!-- 				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" /> -->
+<!-- 			</p:outputPanel> -->
 		</h:form>
 	</p:dialog>
 </ui:composition>

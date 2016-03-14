@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import ru.bisoft.socialservice.ejb.dao.PersonServiceEJB;
 import ru.bisoft.socialservice.model.PersonService;
 import ru.bisoft.socialservice.model.PersonService.PersonServiceStatus;
-import ru.bisoft.socialservice.model.PersonDisability.SettingType;
 
 public class PersonServiceBean {
 	@EJB
