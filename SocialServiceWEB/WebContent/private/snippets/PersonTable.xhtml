@@ -7,8 +7,8 @@
 			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
 
 			<p:column style="width:16px">
-	            <p:rowToggler />
-	        </p:column>
+				<p:rowToggler />
+			</p:column>
 
 			<p:column headerText="Имя" filterBy="#{person.namePerson}" filterMatchMode="contains">
 				<h:outputText value="#{person.namePerson}" />
@@ -31,36 +31,37 @@
 			<p:column styleClass="ui_button_column">
 				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.deletePerson(person)}" update=":personTableForm :navigationFrom" />
 			</p:column>
-			
+
 			<p:rowExpansion>
-				<h:form id="personServiceTableForm">
-					<p:dataTable id="personServiceTable" value="#{personBean.selection.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-					
+				<p:panel id="personServicePanel" header="Мероприятия">
+					<p:dataTable id="personServiceTable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
+						<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
+
 						<p:column headerText="Наименование">
 							<h:outputText value="#{personService.service.name}" />
 						</p:column>
-						
+
 						<p:column headerText="Дата добавления" width="15%">
 							<h:outputText value="#{personService.date}" />
 						</p:column>
-						
+
 						<p:column headerText="Статус">
 							<h:outputText value="#{personService.status.label}" />
 						</p:column>
-						
+
 						<p:column headerText="Поставщик">
 							<h:outputText value="#{personService.organization.nameOrganization}" />
 						</p:column>
-						
+
 						<p:column styleClass="ui_button_column">
-							<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonService(personService)}" update="@form" />
+							<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.personServicetList.remove(personService)}" update="@form" />
 						</p:column>
-						
+
 						<f:facet name="footer" style="text-align:right;">
-							<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert()}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
+							<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert(person)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
 						</f:facet>
 					</p:dataTable>
-				</h:form>
+				</p:panel>
 			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
