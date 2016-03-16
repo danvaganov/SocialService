@@ -5,7 +5,7 @@
 		<p:growl autoUpdate="true" />
 		<p:panelMenu style="width: auto;">
 			<p:submenu label="Дела" id="navigationArticleContract">
-				<p:menuitem value="Дела [#{contractBean.getRowCount()}]" icon="ui-icon-document" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ServiceDataGrid.xhtml')}" />
+				<p:menuitem value="Дела [#{personServiceBean.find().size()}]" icon="ui-icon-document" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ServiceDataGrid.xhtml')}" />
 			</p:submenu>
 			<p:submenu label="Клиенты">
 				<p:menuitem value="Клиенты [#{personBean.getRowCount()}]" icon="ui-icon-person" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/PersonTable.xhtml')}" />
