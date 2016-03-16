@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.ejb.dao.PersonServiceEJB;
 import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonService;
@@ -15,12 +16,16 @@ import ru.bisoft.socialservice.model.PersonService.PersonServiceStatus;
 public class PersonServiceBean {
 	@EJB
 	PersonServiceEJB personServiceEJB;
+	@EJB
+	PersonEJB personEJB;
 	
 	PersonBean personBean;
 	
 	LoginBean loginBean;
 
 	PersonService selection;
+	
+	Person person;
 
 	public void prepareInsert(Person person) {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -30,9 +35,10 @@ public class PersonServiceBean {
 		selection.setDate(new Date());
 	}
 
-	public void update() {
-		selection.getPerson().addPersonService(selection);
-		personServiceEJB.update(selection);
+	public void update(Person person) {
+		person.addPersonService(selection);
+		personEJB.update(person);
+		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Update", ""));
 	}

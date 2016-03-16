@@ -154,8 +154,9 @@ public class PersonService implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(String.valueOf(this == obj), ""));
+		//совпадают ли наши первичные ключи?
+		/*FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage(String.valueOf(this == obj), ""));*/
 		
 		if (this == obj)
 			return true;
