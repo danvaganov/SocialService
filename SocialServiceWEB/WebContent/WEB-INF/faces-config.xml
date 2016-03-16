@@ -125,6 +125,11 @@
    <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
    <value>#{personBean}</value>
   </managed-property>
+  <managed-property>
+  	<property-name>loginBean</property-name>
+  	<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+  	<value>#{loginBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>organizationConverter</managed-bean-name>

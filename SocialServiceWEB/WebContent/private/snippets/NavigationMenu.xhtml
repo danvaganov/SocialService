@@ -4,23 +4,13 @@
 	<h:form id="navigationFrom">
 		<p:growl autoUpdate="true" />
 		<p:panelMenu style="width: auto;">
-			<p:submenu label="Договора" id="navigationArticleContract">
-				<p:menuitem value="Договора [#{contractBean.getRowCount()}]" icon="ui-icon-document" update=":content" actionListener="#{mainContentBean.setContent('/private/private/snippets/ContractTable.xhtml')}" />
-			</p:submenu>
-			<p:submenu label="Средства реабилитации">
-				<p:menuitem value="На складе [#{articleInStockBean.getRowCount()}]" icon="ui-icon-home" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ArticleInStockTable.xhtml')}" />
-				<p:menuitem value="В прокате [#{articleInRentBean.getRowCount()}]" icon="ui-icon-clock" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ArticleInRentTable.xhtml')}" />
-				<p:menuitem value="Списано [#{articleWriteOffBean.getRowCount()}]" icon="ui-icon-trash" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ArticleWriteOffTable.xhtml')}" />
+			<p:submenu label="Дела" id="navigationArticleContract">
+				<p:menuitem value="Дела [#{contractBean.getRowCount()}]" icon="ui-icon-document" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ServiceDataGrid.xhtml')}" />
 			</p:submenu>
 			<p:submenu label="Клиенты">
 				<p:menuitem value="Клиенты [#{personBean.getRowCount()}]" icon="ui-icon-person" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/PersonTable.xhtml')}" />
 			</p:submenu>
 			<p:separator />
-			<p:submenu label="Шаблоны">
-				<p:menuitem value="Договор" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ContractTemplateEditor.xhtml')}" />
-				<p:menuitem value="Заявление" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/RequestTemplateEditor.xhtml')}" />
-				<p:menuitem value="Акт" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ActTemplateEditor.xhtml')}" />
-			</p:submenu>
 			<p:submenu label="Отчеты">
 				<p:menuitem value="stat" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/Report.xhtml')}" />
 				<p:menuitem value="Статистика" action="#{contractBean.showContract()}" icon="ui-icon-extlink" target="_blank" ajax="false" />

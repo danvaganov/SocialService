@@ -1,10 +1,13 @@
 package ru.bisoft.socialservice.ejb.dao;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import ru.bisoft.socialservice.model.Organization;
 import ru.bisoft.socialservice.model.PersonService;
 
 /**
@@ -40,5 +43,10 @@ public class PersonServiceEJB {
 	//@Override
 	public void delete(Integer ID) {
 		em.remove(em.find(PersonService.class, ID));
+	}
+	
+	public List<PersonService> find (Organization organization)
+	{
+		return em.createNamedQuery("PersonService.findByOrganization", PersonService.class).setParameter("organization", organization).getResultList();
 	}
 }

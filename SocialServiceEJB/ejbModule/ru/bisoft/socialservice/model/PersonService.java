@@ -16,10 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name = "PERSON_SERVICE")
 @SequenceGenerator(name = "PERSON_SERVICE_GEN_ID", sequenceName = "PERSON_SERVICE_GEN_ID", allocationSize = 1, initialValue = 1)
+@NamedQuery(name = "PersonService.findByOrganization", query = "SELECT PS FROM PersonService PS WHERE PS.organization = :organization")
 public class PersonService {
 	@Id
 	@Column(name = "KEY_PERSON_SERVICE")

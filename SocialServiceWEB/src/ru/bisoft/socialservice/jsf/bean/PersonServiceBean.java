@@ -1,6 +1,7 @@
 package ru.bisoft.socialservice.jsf.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -14,8 +15,10 @@ import ru.bisoft.socialservice.model.PersonService.PersonServiceStatus;
 public class PersonServiceBean {
 	@EJB
 	PersonServiceEJB personServiceEJB;
-
+	
 	PersonBean personBean;
+	
+	LoginBean loginBean;
 
 	PersonService selection;
 
@@ -53,4 +56,19 @@ public class PersonServiceBean {
 	public PersonServiceStatus[] getStatuses() {
 		return PersonServiceStatus.values();
 	}
+
+	public List<PersonService> find ()
+	{
+		return personServiceEJB.find(loginBean.gettUser().getEmployee().getOrganization());
+	}
+	
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+	
+	
 }
