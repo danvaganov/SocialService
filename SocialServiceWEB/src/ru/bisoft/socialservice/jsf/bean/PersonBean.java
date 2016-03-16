@@ -20,6 +20,7 @@ import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonDocument;
 import ru.bisoft.socialservice.model.PersonOrganization;
+import ru.bisoft.socialservice.model.PersonService;
 
 public class PersonBean extends LazyDataModel<Person> {
 	/**
@@ -128,4 +129,9 @@ public class PersonBean extends LazyDataModel<Person> {
 		}
 	}
 	
+	public void removePersonService(PersonService personService)
+	{
+		personService.getPerson().removePersonService(personService);
+		personEJB.update(personService.getPerson());
+	}
 }

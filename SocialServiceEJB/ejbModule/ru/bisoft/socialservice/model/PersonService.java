@@ -3,8 +3,11 @@ package ru.bisoft.socialservice.model;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +25,12 @@ import javax.persistence.NamedQuery;
 @Table(name = "PERSON_SERVICE")
 @SequenceGenerator(name = "PERSON_SERVICE_GEN_ID", sequenceName = "PERSON_SERVICE_GEN_ID", allocationSize = 1, initialValue = 1)
 @NamedQuery(name = "PersonService.findByOrganization", query = "SELECT PS FROM PersonService PS WHERE PS.organization = :organization")
-public class PersonService {
+public class PersonService implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4087879923008447290L;
+
 	@Id
 	@Column(name = "KEY_PERSON_SERVICE")
 	@GeneratedValue(generator = "PERSON_SERVICE_GEN_ID", strategy = SEQUENCE)
@@ -135,4 +143,34 @@ public class PersonService {
 			return label;
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage(String.valueOf(this == obj), ""));
+		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonService other = (PersonService) obj;		
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonService [id=" + id + "]";
+	}	
 }

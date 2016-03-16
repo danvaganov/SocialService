@@ -2,6 +2,8 @@ package ru.bisoft.socialservice.model;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,12 @@ import javax.persistence.Table;
 	@NamedQuery(name="Service.getCount", query="SELECT COUNT(s) FROM Service s")
 })
 @SequenceGenerator(name = "SERVICE_GEN_ID", sequenceName = "SERVICE_GEN_ID", allocationSize = 1, initialValue = 1)
-public class Service {
+public class Service implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 124810327802685395L;
+
 	@Id
 	@Column(name = "KEY_SERVICE")
 	@GeneratedValue(generator = "SERVICE_GEN_ID", strategy = SEQUENCE)

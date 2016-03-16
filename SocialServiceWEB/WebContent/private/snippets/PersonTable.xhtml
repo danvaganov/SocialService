@@ -53,7 +53,7 @@
 					</p:column>
 
 					<p:column styleClass="ui_button_column">
-						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.personServicetList.remove(personService)}" update="@form" />
+						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.removePersonService(personService)}" update="@form:personTable:personServiceTable" />
 					</p:column>
 
 					<f:facet name="footer" style="text-align:right;">
