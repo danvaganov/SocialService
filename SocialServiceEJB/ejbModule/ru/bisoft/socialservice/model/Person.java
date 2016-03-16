@@ -5,10 +5,14 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -36,7 +40,10 @@ import javax.persistence.Temporal;
 	@NamedQuery(name = "Person.findByFIO", query = "SELECT P FROM Person P WHERE COALESCE(TRIM(LOWER(P.namePerson)),'') = COALESCE(TRIM(LOWER(:namePerson)),'') AND COALESCE(TRIM(LOWER(P.surnamePerson)),'') = COALESCE(TRIM(LOWER(:surnamePerson)),'') AND COALESCE(TRIM(LOWER(P.patronymicPerson)),'') = COALESCE(TRIM(LOWER(:patronymicPerson)),'')")
 })
 @SequenceGenerator(name = "PERSON_GEN_ID", sequenceName = "PERSON_GEN_ID", allocationSize = 1, initialValue = 1)
-public class Person {
+public class Person implements Serializable{
+	
+	private static final long serialVersionUID = 3821264634350421943L;
+	
 	@Id
 	@Column(name = "KEY_PERSON")
 	@GeneratedValue(generator = "PERSON_GEN_ID", strategy = SEQUENCE)
@@ -223,10 +230,19 @@ public class Person {
 	}
 	public void removePersonService(PersonService personService)
 	{
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Delete Service", ""));
 		this.personServicetList.remove(personService);
 	}
 	public void addPersonOrganization(PersonOrganization personOrganization)
 	{
 		this.personOrganizationList.add(personOrganization);
 	}
+	@Override
+	public String toString() {
+		return "Person [keyPerson=" + keyPerson + ", namePerson=" + namePerson + ", surnamePerson=" + surnamePerson
+				+ ", patronymicPerson=" + patronymicPerson + ", birthdayPerson=" + birthdayPerson + ", foto="
+				+ Arrays.toString(foto) + ", passport=" + passport + "]";
+	}
+	
 }
