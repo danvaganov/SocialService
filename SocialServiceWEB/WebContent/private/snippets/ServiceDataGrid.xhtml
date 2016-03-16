@@ -8,18 +8,16 @@
         </f:facet>
 
 		<p:panel header="#{personService.person.surnamePerson} #{personService.person.namePerson} #{personService.person.patronymicPerson}">
-			<p:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="name" value="Мероприятие:" />
-				<h:outputText id="name" value="#{personService.service.name}" />
+				<h:outputText id="name" value="#{personService.service.name}" style="font: bold 110%"/>
 
 				<h:outputLabel for="date" value="Назначено:" />
-				<h:outputText id="date" value="#{personService.date}">
+				<h:outputText id="date" value="#{personService.date}" style="font: bold 110%">
 					<f:convertDateTime pattern="dd.MM.yyyy" />
 				</h:outputText>
 
 				<h:outputLabel for="status" value="Назначено:" />
-				<h:outputText id="status" value="#{personService.status.label}" />
-			</p:panelGrid>
+				<h:outputText id="status" value="#{personService.status.label}" style="font: bold 110%"/>
 		</p:panel>
 
 	</p:dataGrid>
