@@ -33,11 +33,11 @@ public class PersonServiceBean {
 		selection = new PersonService();
 		selection.setPerson(person);
 		selection.setDate(new Date());
+		person.addPersonService(selection);
 	}
 
-	public void update(Person person) {
-		person.addPersonService(selection);
-		personEJB.update(person);
+	public void update() {
+		personEJB.update(selection.getPerson());
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Update", ""));
