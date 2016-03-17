@@ -41,7 +41,9 @@
 					</p:column>
 
 					<p:column headerText="Дата добавления" width="15%">
-						<h:outputText value="#{personService.date}" />
+						<h:outputText value="#{personService.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Статус">
@@ -57,7 +59,7 @@
 					</p:column>
 
 					<f:facet name="footer" style="text-align:right;">
-						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert(person)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
+						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert(person, component.id)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
 					</f:facet>
 				</p:dataTable>
 			</p:rowExpansion>

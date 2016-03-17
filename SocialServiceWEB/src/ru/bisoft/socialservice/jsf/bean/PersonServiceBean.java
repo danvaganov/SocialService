@@ -24,23 +24,20 @@ public class PersonServiceBean {
 	LoginBean loginBean;
 
 	PersonService selection;
+	String updateId;
 	
-	Person person;
-
-	public void prepareInsert(Person person) {
+	public void prepareInsert(Person person, String ownerId) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Prepare", ""));
+		updateId = ownerId;
 		selection = new PersonService();
 		selection.setPerson(person);
+		person.addPersonService(selection);
 		selection.setDate(new Date());
 	}
 
-	public void update(Person person) {
-		person.addPersonService(selection);
-		personEJB.update(person);
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Update", ""));
+	public void update() {
+		personEJB.update(selection.getPerson());
 	}
 
 	public PersonBean getPersonBean() {
@@ -74,6 +71,14 @@ public class PersonServiceBean {
 
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
+	}
+
+	public String getUpdateId() {
+		return updateId;
+	}
+
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
 	}
 	
 	
