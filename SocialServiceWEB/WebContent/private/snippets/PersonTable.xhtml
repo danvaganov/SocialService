@@ -33,7 +33,7 @@
 			</p:column>
 
 			<p:rowExpansion>
-				<p:dataTable id="personServiceTable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
+				<p:dataTable id="personServiceTable" styleClass="servtable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
 					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
 
 					<p:column headerText="Наименование">

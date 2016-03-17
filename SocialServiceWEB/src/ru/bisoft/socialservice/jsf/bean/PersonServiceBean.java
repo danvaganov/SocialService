@@ -34,10 +34,14 @@ public class PersonServiceBean {
 		selection.setPerson(person);
 		person.addPersonService(selection);
 		selection.setDate(new Date());
+		person.addPersonService(selection);
 	}
 
 	public void update() {
 		personEJB.update(selection.getPerson());
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("Update", ""));
 	}
 
 	public PersonBean getPersonBean() {
