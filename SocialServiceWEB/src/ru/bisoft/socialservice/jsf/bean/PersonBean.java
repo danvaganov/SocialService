@@ -1,6 +1,7 @@
 package ru.bisoft.socialservice.jsf.bean;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class PersonBean extends LazyDataModel<Person> {
 	
 	public StreamedContent getFoto()
 	{
-		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png"); 
+		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png");
 	}
 
 	public void setFoto(StreamedContent foto) {
