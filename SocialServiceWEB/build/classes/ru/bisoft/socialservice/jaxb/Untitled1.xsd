@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="IPR">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Person" type="PERSONTYPE"/>
+                <xs:element name="Organization" type="ORGANIZATIONTYPE"/>
+            </xs:sequence>
+            <xs:attribute name="Version"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="PERSONTYPE">
+        <xs:sequence>
+            <xs:element name="NAME" nillable="true" type="xs:string"/>
+            <xs:element name="SURNAME" nillable="true" type="xs:string"/>
+            <xs:element name="PATRONYMIC" type="xs:string"/>
+            <xs:element name="BIRTHDAY" type="xs:date"/>
+            <xs:element name="INN" type="xs:string"/>
+            <xs:element name="SNILS" type="xs:string"/>
+            <xs:element name="FOTO" type="xs:base64Binary"/>
+            <xs:element name="ARCHIVE" type="xs:boolean"/>
+            <xs:element name="BIRTHPLACE" type="xs:string"/>
+            <xs:element name="PLACEOFREGISTRATION" type="xs:string"/>
+            <xs:element name="PLACEOFACTUALRESIDING" type="xs:string"/>
+            <xs:element name="HOUSINGCONDITIONSOFLIFE" type="xs:string"/>
+            <xs:element name="DATAISIMPORTED" type="xs:int"/>
+            <xs:element name="MAINPLACEOFREGISTRATION" type="xs:string"/>
+            <xs:element name="SEX" type="xs:int"/>
+            <xs:element name="TELEFONE" type="xs:string"/>
+            <xs:element name="EXTFOTO" type="xs:string"/>
+            <xs:element name="SICKNESS" type="xs:string"/>
+            <xs:element name="NECESSITYS" type="xs:string"/>
+            <xs:element name="DATEOFREGISTRATION" type="xs:date"/>
+            <xs:element name="INDICATORCHILD" type="xs:int"/>
+            <xs:element name="INCOMPETENT" type="xs:int"/>
+            <xs:element name="NOT_DATE_REGISTRATION" type="xs:int"/>
+            <xs:element name="CHILDIND" type="xs:int"/>
+            <xs:element name="EMAIL" type="xs:string"/>
+            <xs:element name="NATIONALITY" type="NATIONALITYTYPE"/>
+            <xs:element name="PRESENCEOFDOCUMENTS" type="PRESENCEOFDOCUMENTSTYPE"/>
+            <xs:element name="REHABILITATIONCARD" type="REHABILITATIONCARDTYPE"/>
+            <xs:element minOccurs="0" name="PHYSICALINABILITYLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="PHYSICALINABILITY"
+                            type="PHYSICALINABILITYTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="LASTPLACEOFWORKLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="LASTPLACEOFWORK"
+                            type="LASTPLACEOFWORKTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="MASTEREDTRADESLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="MASTEREDTRADES"
+                            type="MASTEREDTRADESTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="CRIMINALLIABILITYLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="CRIMINALLIABILITY"
+                            type="CRIMINALLIABILITYTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="DATAVAGABONDLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="DATAVAGABOND"
+                            type="DATAVAGABONDTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="EDUCATIONPERSONLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="EDUCATIONPERSON"
+                            type="EDUCATIONPERSONTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="ADDITIONALDATALIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="ADDITIONALDATA"
+                            type="ADDITIONALDATATYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="RELATIVESLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="RELATIVES"
+                            type="RELATIVESTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="DOPSOCCATPERSONLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="DOPSOCCATPERSON"
+                            type="DOPSOCCATPERSONTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="INCOMESOURCELIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="INCOMESOURCE"
+                            type="INCOMESOURCETYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="PARAMVALUELIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="PARAMVALUE"
+                            type="PARAMVALUETYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="CATEGRECIPSERVPPERSONLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="CATEGRECIPSERVPPERSON"
+                            type="CATEGRECIPSERVPPERSONTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="PERSONANKETLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="PERSONANKET"
+                            type="PERSONANKETTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="DOCUMENTPERSONLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="DOCUMENTPERSON"
+                            type="DOCUMENTPERSONTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NATIONALITYTYPE">
+        <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element name="ID" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PRESENCEOFDOCUMENTSTYPE">
+        <xs:sequence>
+            <xs:element name="PASSPORT" type="xs:int"/>
+            <xs:element name="PASSPORTDATA" type="xs:string"/>
+            <xs:element name="PASSPORTNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="PASSPORTDATE" type="xs:date"/>
+            <xs:element name="MILITARYCARD" type="xs:string"/>
+            <xs:element name="MILITARYCARDNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="INN" type="xs:string"/>
+            <xs:element name="INNNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="INSURANCECERTIFICATE" type="xs:boolean"/>
+            <xs:element name="INSURANCECERTIFICATENEEDRECOVE" type="xs:boolean"/>
+            <xs:element name="MEDICALPOLICY" type="xs:boolean"/>
+            <xs:element name="MEDICALPOLICYNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="LEARINGINQUIRY" type="xs:boolean"/>
+            <xs:element name="LEARINGINQUIRYNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="MSE" type="xs:boolean"/>
+            <xs:element name="MSENEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="BIRTHCERTIFICATE" type="xs:boolean"/>
+            <xs:element name="BIRTHCERTIFICATENEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="DOCUMENTONEDUCATION" type="xs:boolean"/>
+            <xs:element name="DOCUMENTONEDUCATIONNEEDRECOVER" type="xs:boolean"/>
+            <xs:element name="WORKRECORDCARD" type="xs:boolean"/>
+            <xs:element name="WORKRECORDCARDNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="PENSIONCERTIFICATE" type="xs:boolean"/>
+            <xs:element name="PENSIONCERTIFICATENEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="TIME_STAMP" type="xs:dateTime"/>
+            <xs:element name="GUARDIANSHIP" type="xs:boolean"/>
+            <xs:element name="GUARDIANSHIPNEEDRECOVERY" type="xs:boolean"/>
+            <xs:element name="PASSPORTISSUED" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PHYSICALINABILITYTYPE">
+        <xs:sequence>
+            <xs:element name="GROUPINABILITY" type="xs:int" minOccurs="1" nillable="true"/>
+            <xs:element name="CHILDINVALID" type="xs:int"/>
+            <xs:element name="ESTABLISHED" type="xs:string"/>
+            <xs:element name="REEXAMINATIONTERM" type="xs:date"/>
+            <xs:element name="REASON" type="xs:string"/>
+            <xs:element name="BEGINNING" type="xs:date"/>
+            <xs:element name="COMMENT" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LASTPLACEOFWORKTYPE">
+        <xs:sequence>
+            <xs:element name="ORGANIZATION" type="xs:string"/>
+            <xs:element name="POST" type="xs:string"/>
+            <xs:element name="WORKPLACE" type="WORKPLACETYPE"/>
+            <xs:element name="INDEX_LASTPLACEOFWORK" type="xs:string"/>
+            <xs:element name="CITY_LASTPLACEOFWORK" type="xs:string"/>
+            <xs:element name="UL_LASTPLACEOFWORK" type="xs:string"/>
+            <xs:element name="HOUSE_LASTPLACEOFWORK" type="xs:string"/>
+            <xs:element name="PHONE_LASTPLACEOFWORK" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WORKPLACETYPE">
+        <xs:sequence>
+            <xs:element name="KEY_WORKPLACE" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MASTEREDTRADESTYPE">
+        <xs:sequence>
+            <xs:element name="MAIN_MASTEREDTRADES" type="xs:boolean"/>
+            <xs:element name="PROFESSION" type="PROFESSIONTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PROFESSIONTYPE">
+        <xs:sequence>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="KEY_PROFESSION" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CRIMINALLIABILITYTYPE">
+        <xs:sequence>
+            <xs:element name="DATEATTRACTION" type="xs:date"/>
+            <xs:element name="ARTICLE" type="xs:string"/>
+            <xs:element name="NOTE" type="xs:string"/>
+            <xs:element name="DATECLEARING" type="xs:date"/>
+            <xs:element name="YEARSCLEARING" type="xs:int"/>
+            <xs:element name="MONTHSCLEARING" type="xs:int"/>
+            <xs:element name="MEASUREPUNISHMENT" type="MEASUREPUNISHMENTTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MEASUREPUNISHMENTTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_MEASUREPUNISHMENT" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DATAVAGABONDTYPE">
+        <xs:sequence>
+            <xs:element name="YEARSTERM" type="xs:int"/>
+            <xs:element name="MONTHSTERM" type="xs:int"/>
+            <xs:element name="REASONS" type="xs:base64Binary"/>
+            <xs:element name="COMMENT" type="xs:string"/>
+            <xs:element name="REASONHOMELESS" type="REASONHOMELESSTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="REASONHOMELESSTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_REASONHOMELESS" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EDUCATIONPERSONTYPE">
+        <xs:sequence>
+            <xs:element name="INDICATORCHILD" type="xs:boolean"/>
+            <xs:element name="EDUCATION" type="EDUCATIONTYPE"/>
+            <xs:element name="SPECIALTY" type="SPECIALTYTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EDUCATIONTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_EDUCATION" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="INACTIVE_EDUCATION" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SPECIALTYTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_SPECIALTY" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ADDITIONALDATATYPE">
+        <xs:sequence>
+            <xs:element name="NAME_DOC" type="xs:string"/>
+            <xs:element name="SCAN" type="xs:base64Binary"/>
+            <xs:element name="KEY_DOC" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="REHABILITATIONCARDTYPE">
+        <xs:sequence>
+            <xs:element name="NUMBERCARD" type="xs:string"/>
+            <xs:element name="DATEWRITE" type="xs:date"/>
+            <xs:element name="NOTE" type="xs:string"/>
+            <xs:element name="INACTIVE_CADR" type="xs:boolean"/>
+            <xs:element name="COD_FS" type="xs:int"/>
+            <xs:element name="FIRST_REHABILITATIONCARD" type="xs:int"/>
+            <xs:element name="DATEEND_CARD" type="xs:date"/>
+            <xs:element maxOccurs="unbounded" name="REHABILITATIONACTIONS"
+                type="REHABILITATIONACTIONSTYPE"/>
+            <xs:element name="SOCUSLUGAINCARDLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="SOCUSLUGAINCARD"
+                            type="SOCUSLUGAINCARDTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="REHABILITATIONACTIONSTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_REHABILITATIONACTIONS" type="xs:int"/>
+            <xs:element name="DIAGNOSTICS" type="xs:string"/>
+            <xs:element name="CONCLUSION" type="xs:string"/>
+            <xs:element name="KEY_PARAMVALUE" type="xs:int"/>
+            <xs:element name="KEY_CATEGORYPARAM" type="xs:int"/>
+            <xs:element maxOccurs="unbounded" name="REALISEDACTIVITY" type="REALISEDACTIVITYTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="REALISEDACTIVITYTYPE">
+        <xs:sequence>
+            <xs:element name="PERFORMANCEDATE" type="xs:date"/>
+            <xs:element name="COMMENTS" type="xs:string"/>
+            <xs:element name="COD_PERSO" type="xs:int"/>
+            <xs:element name="REALIZE" type="xs:int"/>
+            <xs:element name="COD_USLUGA" type="xs:int"/>
+            <xs:element name="PERIODLOW" type="xs:date"/>
+            <xs:element name="PERIODHIGH" type="xs:date"/>
+            <xs:element name="FREQUENCY" type="xs:string"/>
+            <xs:element name="USLUGA_FSIN" type="xs:string"/>
+            <xs:element name="COD_TYPEUSLUGA" type="xs:int"/>
+            <xs:element name="COD_KSSC" type="xs:int"/>
+            <xs:element name="PERFORMER" type="PERFORMERTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PERFORMERTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_PERFORMER" type="xs:int"/>
+            <xs:element name="FAMILY" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PATRONYMIC" type="xs:string"/>
+            <xs:element name="INFO" type="xs:string"/>
+            <xs:element name="SHORTNAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RELATIVESTYPE">
+        <xs:sequence>
+            <xs:element name="FAMILY" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="PATRONYMIC" type="xs:string"/>
+            <xs:element name="PLACEOFRESIDENCE" type="xs:string"/>
+            <xs:element name="TELEPHONE" type="xs:string"/>
+            <xs:element name="INDICATORCHILD" type="xs:int"/>
+            <xs:element name="INFORMATION" type="xs:string"/>
+            <xs:element name="LAWAGENT" type="xs:int"/>
+            <xs:element name="YEARBIRTH" type="xs:int"/>
+            <xs:element name="CHILD" type="xs:int"/>
+            <xs:element name="KEY_EDUCATION" type="xs:int"/>
+            <xs:element name="DOCUMENT" type="xs:string"/>
+            <xs:element name="KEYRELATIV_PERSO" type="xs:int"/>
+            <xs:element name="UCHINRASCH" type="xs:int"/>
+            <xs:element name="RELATIONSHIP" type="RELATIONSHIPTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RELATIONSHIPTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_RELATIONSHIP" type="xs:int"/>
+            <xs:element name="DEGREE" type="xs:string"/>
+            <xs:element name="INACTIVE_RELATIONSHIP" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DOPSOCCATPERSONTYPE">
+        <xs:sequence>
+            <xs:element name="DOPSOCCAT" type="DOPSOCCATTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DOPSOCCATTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_DOPSSC" type="xs:int"/>
+            <xs:element name="NAME_DOPSSC" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="INCOMESOURCETYPE">
+        <xs:sequence>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="SUMMA" type="xs:float"/>
+            <xs:element name="DATEWRITE" type="xs:date"/>
+            <xs:element name="PERIOD" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PARAMVALUETYPE">
+        <xs:sequence>
+            <xs:element name="NUMPARAM" type="xs:int"/>
+            <xs:element name="STRPARAM" type="xs:string"/>
+            <xs:element name="DATEPARAM" type="xs:date"/>
+            <xs:element name="DATEWRITE" type="xs:date"/>
+            <xs:element name="TYPEVALUE" type="xs:string"/>
+            <xs:element name="KEY_RESULT" type="xs:int"/>
+            <xs:element name="KEY_CATEGORYPARAM" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CATEGRECIPSERVPPERSONTYPE">
+        <xs:sequence>
+            <xs:element name="KEY_CATEGRECIPSERVPPERSON" type="xs:int"/>
+            <xs:element name="COD_SSC" type="xs:int"/>
+            <xs:element name="COD_SSOCCAT" type="xs:int"/>
+            <xs:element name="COD_CRS" type="xs:int"/>
+            <xs:element name="PRIMARYFLAG" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PERSONANKETTYPE">
+        <xs:sequence>
+            <xs:element name="DATE_PA" type="xs:date"/>
+            <xs:element name="TYPE_PA" type="xs:int"/>
+            <xs:element name="PERSONANKETANSWERLIST">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="1" name="PERSONANKETANSWER"
+                            type="PERSONANKETANSWERTYPE"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PERSONANKETANSWERTYPE">
+        <xs:sequence>
+            <xs:element name="COD_PAA" type="xs:int"/>
+            <xs:element name="COD_IPRAQ" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SOCUSLUGAINCARDTYPE">
+        <xs:sequence>
+            <xs:element name="VALUE_SUC" type="xs:float"/>
+            <xs:element name="TYPEVALUE_SUC" type="xs:int"/>
+            <xs:element name="TYPEPERIOD_SUC" type="xs:int"/>
+            <xs:element name="VALUEPERIOD_SUC" type="xs:float"/>
+            <xs:element name="TYPEDLINE_SUC" type="xs:int"/>
+            <xs:element name="DLINEBEGPERIOD_SUC" type="xs:date"/>
+            <xs:element name="DLINEENDPERIOD_SUC" type="xs:date"/>
+            <xs:element name="SKILL_SUC" type="xs:float"/>
+            <xs:element name="STATUS_SUC" type="xs:int"/>
+            <xs:element name="KEY_PARAMVALUE" type="xs:int"/>
+            <xs:element name="COD_USTD" type="xs:int"/>
+            <xs:element name="COSTUSLUGAINCARD_SUC" type="xs:float"/>
+            <xs:element name="WEB_SUC" type="xs:int"/>
+            <xs:element name="INWEB" type="xs:int"/>
+            <xs:element minOccurs="0" name="USLUGAINSTD" type="USLUGAINSTDTYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DOCUMENTPERSONTYPE">
+        <xs:sequence>
+            <xs:element name="NAME_DOCUMENTPERSON" type="xs:string"/>
+            <xs:element name="STATE_DOCUMENTPERSON" type="xs:int"/>
+            <xs:element name="NUMBER_DOCUMENTPERSON" type="xs:string"/>
+            <xs:element name="DATE_DOCUMENTPERSON" type="xs:date"/>
+            <xs:element name="ISSUE_DOCUMENTPERSON" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="USLUGAINSTDTYPE">
+        <xs:sequence>
+            <xs:element name="COD_USTD" type="xs:int"/>
+            <xs:element name="NAME_KSN" type="xs:string"/>
+            <xs:element name="NAME_FS" type="xs:string"/>
+            <xs:element name="NAME_TUN" type="xs:string"/>
+            <xs:element name="NAME_USLUGANST" type="xs:string"/>
+            <xs:element name="NAME_USLUGANEWST" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ORGANIZATIONTYPE">
+        <xs:sequence>
+            <xs:element name="NAME_ORGANIZATION" type="xs:string"/>
+            <xs:element name="INN_ORGANIZATION" type="xs:string"/>
+            <xs:element name="FULL_NAME_ORGANIZATION" type="xs:string"/>
+            <xs:element name="KEY_ORGANIZATION" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
