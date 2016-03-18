@@ -3,8 +3,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 	<h:form id="personTableForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
-		<p:dataTable value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personBean.selection}" lazy="true" selectionMode="single">
+		<p:dataTable widgetVar="personTableWidget" value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personBean.selection}" lazy="true" selectionMode="single" rowExpandMode="single">
 			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm" />
+			<p:ajax event="rowToggle" listener="#{personBean.onRowToggle}" update="@none"/>
 
 			<p:column style="width:16px">
 				<p:rowToggler />
@@ -34,8 +35,8 @@
 
 			<p:rowExpansion>
 				<p:dataTable id="personServiceTable" styleClass="servtable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
-
+					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process="@this"/>
+						
 					<p:column headerText="Наименование">
 						<h:outputText value="#{personService.service.name}" />
 					</p:column>
@@ -59,7 +60,7 @@
 					</p:column>
 
 					<f:facet name="footer" style="text-align:right;">
-						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert(person, component.id)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm" />
+						<p:commandButton value="Добавить" actionListener="#{personServiceBean.prepareInsert()}" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process="@this"/>
 					</f:facet>
 				</p:dataTable>
 			</p:rowExpansion>

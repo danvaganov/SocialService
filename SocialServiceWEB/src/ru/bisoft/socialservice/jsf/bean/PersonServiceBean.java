@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 
 import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.ejb.dao.PersonServiceEJB;
-import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonService;
 import ru.bisoft.socialservice.model.PersonService.PersonServiceStatus;
 
@@ -24,17 +23,14 @@ public class PersonServiceBean {
 	LoginBean loginBean;
 
 	PersonService selection;
-	String updateId;
 	
-	public void prepareInsert(Person person, String ownerId) {
+	public void prepareInsert() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Prepare", ""));
-		updateId = ownerId;
 		selection = new PersonService();
-		selection.setPerson(person);
-		person.addPersonService(selection);
+		selection.setPerson(personBean.getSelection());
+		personBean.getSelection().addPersonService(selection);
 		selection.setDate(new Date());
-		person.addPersonService(selection);
 	}
 
 	public void update() {
@@ -76,14 +72,4 @@ public class PersonServiceBean {
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
 	}
-
-	public String getUpdateId() {
-		return updateId;
-	}
-
-	public void setUpdateId(String updateId) {
-		this.updateId = updateId;
-	}
-	
-	
 }

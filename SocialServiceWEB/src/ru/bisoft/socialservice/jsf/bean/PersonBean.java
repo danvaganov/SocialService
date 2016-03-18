@@ -11,6 +11,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
+import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -133,5 +134,10 @@ public class PersonBean extends LazyDataModel<Person> {
 	{
 		personService.getPerson().removePersonService(personService);
 		personEJB.update(personService.getPerson());
+	}
+	
+	public void onRowToggle (ToggleEvent event)
+	{
+		selection = (Person)event.getData();
 	}
 }
