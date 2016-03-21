@@ -6,12 +6,12 @@
 				<p:tab title="Основные сведения">
 					<p:panelGrid>
 						<p:row>
-							<p:column style="text-align:center;width:200px;height:140px;background-color: rgba(255, 255, 255, 0.55);">
-								<p:graphicImage cache="false" rendered="#{personBean.selection != null and personBean.selection.foto != null}" value="#{resource['img:camera_400.png']}" style="height:140px;" />
+							<p:column style="text-align:center;width:140px;height:140px;padding:0;">
+								<p:graphicImage cache="false" value="#{personBean.selection.foto != null ? personBean.foto : resource['img:camera_400.png']}" style="height:140px;" />
 							</p:column>
-							<p:column>
-								<p:panelGrid rendered="#{personBean.selection != null}">	
-									<p:row>
+							<p:column style="padding-right:0;padding-top:0;">
+								<p:panelGrid rendered="#{personBean.selection != null}">
+									<p:row style="background:transparent;">
 										<p:column style="font-weight: bold;">
 											<h:outputText value="Имя:" />
 										</p:column>
@@ -19,7 +19,7 @@
 											<p:inputText id="namePerson" value="#{personBean.selection.namePerson}" />
 										</p:column>
 									</p:row>
-									<p:row>
+									<p:row style="background:transparent;">
 										<p:column style="font-weight: bold;">
 											<h:outputText value="Фамилия:" />
 										</p:column>
@@ -27,7 +27,7 @@
 											<p:inputText id="surname" value="#{personBean.selection.surnamePerson}" />
 										</p:column>
 									</p:row>
-									<p:row>
+									<p:row style="background:transparent;">
 										<p:column style="font-weight: bold;">
 											<h:outputText value="Отчество:" />
 										</p:column>
@@ -35,7 +35,7 @@
 											<p:inputText id="patronymic" value="#{personBean.selection.patronymicPerson}" />
 										</p:column>
 									</p:row>
-									<p:row>
+									<p:row style="background:transparent;">
 										<p:column style="font-weight: bold;">
 											<h:outputText value="Дата рождения:" />
 										</p:column>
@@ -116,9 +116,9 @@
 
 				<p:tab title="Инвалидность">
 					<p:dataTable id="personDisabilityTable" value="#{personBean.selection.personDisabilityList}" selection="#{personDisabilityBean.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
-						
+
 						<p:ajax event="rowSelect" oncomplete="PF('personDisabilityDialog').show()" update=":personDisabilityDialogForm" />
-						
+
 						<p:column headerText="Установлено">
 							<h:outputText value="#{personDisability.settingType.label}" />
 						</p:column>
@@ -183,7 +183,7 @@
 						<p:column styleClass="ui_button_column">
 							<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonIncome(personIncome)}" update="@form" />
 						</p:column>
-						
+
 						<f:facet name="footer" style="text-align:right;">
 							<p:commandButton value="Добавить" actionListener="#{personIncomeBean.prepareInsert}" oncomplete="PF('personIncomeDialog').show()" update=":personIncomeDialogForm" />
 						</f:facet>
@@ -210,7 +210,7 @@
 						<p:column styleClass="ui_button_column">
 							<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonProfession(personProfession)}" update="@form" />
 						</p:column>
-						
+
 						<f:facet name="footer" style="text-align:right;">
 							<p:commandButton value="Добавить" actionListener="#{personProfessionBean.prepareInsert}" oncomplete="PF('personProfessionDialog').show()" update=":personProfessionDialogForm" />
 						</f:facet>
@@ -241,7 +241,7 @@
 						<p:column styleClass="ui_button_column">
 							<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonDocument(personDocument)}" update="@form" />
 						</p:column>
-						
+
 						<f:facet name="footer" style="text-align:right;">
 							<p:commandButton value="Добавить" actionListener="#{personDocumentBean.prepareInsert}" oncomplete="PF('personDocumentDialog').show()" update=":personDocumentDialogForm" />
 						</f:facet>

@@ -1,6 +1,7 @@
 package ru.bisoft.socialservice.jsf.bean;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,50 +29,48 @@ public class PersonBean extends LazyDataModel<Person> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	PersonEJB personEJB;
-	
+
 	LoginBean loginBean;
-	
+
 	Person selection;
-	
+
 	private StreamedContent foto;
-	
+
 	public PersonBean() {
 		super();
 	}
 
-	public List<Person> complete(String query)
-	{
-		Map<String, Object> filters = new HashMap<String, Object> ();
+	public List<Person> complete(String query) {
+		Map<String, Object> filters = new HashMap<String, Object>();
 		filters.put("surnamePerson", query);
 		return personEJB.find(loginBean.gettUser().getEmployee().getOrganization(), 0, 10, filters);
 	}
-	
+
 	@Override
 	public List<Person> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		return personEJB.find(loginBean.gettUser().getEmployee().getOrganization(), first, pageSize, filters);
 	}
-	
+
 	@Override
 	public int getRowCount() {
 		return personEJB.getCount(loginBean.gettUser().getEmployee().getOrganization()).intValue();
 	}
-	
+
 	@Override
 	public Object getRowKey(Person object) {
 		return Integer.valueOf(object.getKeyPerson());
 	}
-	
+
 	@Override
 	public Person getRowData(String rowKey) {
 		return personEJB.findById(Integer.valueOf(rowKey));
 	}
-	
-	public StreamedContent getFoto()
-	{
-		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png"); 
+
+	public StreamedContent getFoto() {
+		return new DefaultStreamedContent(new ByteArrayInputStream(selection.getFoto()), "image/png");
 	}
 
 	public void setFoto(StreamedContent foto) {
@@ -93,29 +92,26 @@ public class PersonBean extends LazyDataModel<Person> {
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
 	}
-	
-	public void updatePerson()
-	{
+
+	public void updatePerson() {
 		personEJB.update(selection);
 	}
-	
-	public void deletePerson(Person person)
-	{
+
+	public void deletePerson(Person person) {
 		personEJB.delete(person.getKeyPerson());
 	}
-	
-	public void prepareInsert()
-	{
+
+	public void prepareInsert() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Successful",  "Your message: " + selection) );
-		
+		context.addMessage(null, new FacesMessage("Successful", "Your message: " + selection));
+
 		selection = new Person();
 		PersonOrganization personOrganization = new PersonOrganization();
 		personOrganization.setPerson(selection);
 		personOrganization.setOrganization(loginBean.gettUser().getEmployee().getOrganization());
 		selection.getPersonOrganizationList().add(personOrganization);
 	}
-	
+
 	public void showDocument(PersonDocument personDocument) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
@@ -129,15 +125,13 @@ public class PersonBean extends LazyDataModel<Person> {
 			e.printStackTrace();
 		}
 	}
-	
-	public void removePersonService(PersonService personService)
-	{
+
+	public void removePersonService(PersonService personService) {
 		personService.getPerson().removePersonService(personService);
 		personEJB.update(personService.getPerson());
 	}
-	
-	public void onRowToggle (ToggleEvent event)
-	{
-		selection = (Person)event.getData();
+
+	public void onRowToggle(ToggleEvent event) {
+		selection = (Person) event.getData();
 	}
 }
