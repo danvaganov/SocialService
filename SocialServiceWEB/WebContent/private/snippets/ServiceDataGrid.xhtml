@@ -8,16 +8,29 @@
         </f:facet>
 
 		<p:panel header="#{personService.person.surnamePerson} #{personService.person.namePerson} #{personService.person.patronymicPerson}">
-				<h:outputLabel for="name" value="Мероприятие:" />
-				<h:outputText id="name" value="#{personService.service.name}" style="font: bold 110%"/>
+			<p:panelGrid columns="3" layout="grid">
+				<p:panelGrid columns="2" layout="grid">
+					<h:outputLabel for="name" value="Мероприятие:" />
+					<h:outputText id="name" value="#{personService.service.name}" style="font: bold 110%" />
 
-				<h:outputLabel for="date" value="Назначено:" />
-				<h:outputText id="date" value="#{personService.date}" style="font: bold 110%">
-					<f:convertDateTime pattern="dd.MM.yyyy" />
-				</h:outputText>
+					<h:outputLabel for="date" value="Назначено:" />
+					<h:outputText id="date" value="#{personService.date}" style="font: bold 110%">
+						<f:convertDateTime pattern="dd.MM.yyyy" />
+					</h:outputText>
 
-				<h:outputLabel for="status" value="Назначено:" />
-				<h:outputText id="status" value="#{personService.status.label}" style="font: bold 110%"/>
+					<h:outputLabel for="status" value="Статус:" />
+					<h:outputText id="status" value="#{personService.status.label}" style="font: bold 110%" />
+				</p:panelGrid>
+
+				<p:panelGrid layout="grid">
+
+				</p:panelGrid>
+
+				<p:panelGrid layout="grid">
+					<p:commandButton value="Просмотр ИП" update="@none" />
+					<p:commandButton value="Прикрепить документ" update="@none" />
+				</p:panelGrid>
+			</p:panelGrid>
 		</p:panel>
 
 	</p:dataGrid>
