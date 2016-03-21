@@ -11,10 +11,10 @@
 				<p:menuitem value="Клиенты [#{personBean.getRowCount()}]" icon="ui-icon-person" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/PersonTable.xhtml')}" />
 			</p:submenu>
 			<p:separator />
-			<p:submenu label="Отчеты">
-				<p:menuitem value="stat" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/Report.xhtml')}" />
-				<p:menuitem value="Статистика" action="#{contractBean.showContract()}" icon="ui-icon-extlink" target="_blank" ajax="false" />
-			</p:submenu>
+<!-- 			<p:submenu label="Отчеты"> -->
+<!-- 				<p:menuitem value="stat" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/Report.xhtml')}" /> -->
+<!-- 				<p:menuitem value="Статистика" action="#{contractBean.showContract()}" icon="ui-icon-extlink" target="_blank" ajax="false" /> -->
+<!-- 			</p:submenu> -->
 			<p:submenu label="Администрирование" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
 				<p:menuitem value="Пользователи" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/UserTable.xhtml')}" />
 				<p:menuitem value="Импорт данных" icon="ui-icon-script" update=":content" actionListener="#{mainContentBean.setContent('/private/snippets/ImportTable.xhtml')}" />

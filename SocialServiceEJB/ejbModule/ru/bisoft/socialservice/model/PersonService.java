@@ -6,8 +6,6 @@ import static javax.persistence.TemporalType.DATE;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name = "PERSON_SERVICE")
@@ -128,19 +126,24 @@ public class PersonService implements Serializable{
 	}
 
 	public static enum PersonServiceStatus{
-		ASSIGNED("Назначено"), 
-		PROCESS("В обработке"),
-		DONE("Выполнено"), 
-		DENIED("Отказано"),
-		ATTENTION("Требует внимания");
+		ASSIGNED("Назначено", "yellow"), 
+		PROCESS("В обработке", "blue"),
+		DONE("Выполнено", "green"), 
+		DENIED("Отказано", "red"),
+		ATTENTION("Требует внимания", "red");
 		
 		private String label;
-		private PersonServiceStatus(String label)
+		private String cssColor;
+		private PersonServiceStatus(String label, String cssColor)
 		{
 			this.label = label;
+			this.cssColor = cssColor;
 		}
 		public String getLabel() {
 			return label;
+		}
+		public String getCssColor() {
+			return cssColor;
 		}
 	}
 
