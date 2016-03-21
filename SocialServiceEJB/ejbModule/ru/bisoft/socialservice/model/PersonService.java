@@ -126,7 +126,7 @@ public class PersonService implements Serializable{
 	}
 
 	public static enum PersonServiceStatus{
-		ASSIGNED("Назначено", "yellow"), 
+		ASSIGNED("Назначено", "orange"), 
 		PROCESS("В обработке", "blue"),
 		DONE("Выполнено", "green"), 
 		DENIED("Отказано", "red"),

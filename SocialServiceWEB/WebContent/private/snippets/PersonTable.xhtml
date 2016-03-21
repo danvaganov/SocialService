@@ -54,6 +54,10 @@
 					<p:column headerText="Поставщик">
 						<h:outputText value="#{personService.organization.nameOrganization}" />
 					</p:column>
+					
+					<p:column styleClass="ui_button_column" headerText="Просмотр">
+							<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personBean.showServiceDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+						</p:column>
 
 					<p:column styleClass="ui_button_column">
 						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.removePersonService(personService)}" update="@form:personTable:personServiceTable" />

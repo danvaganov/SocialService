@@ -31,10 +31,12 @@
 				</p:panelGrid>
 
 				<p:panelGrid layout="grid" columns="1">
-					<p:commandButton actionListener="#{personBean.setSelection(personService.person)}" value="Просмотр ИП" update="@none" />
+					<p:commandButton actionListener="#{personBean.setSelection(personService.person)}" value="Просмотр ИП" update=":personDialogForm" />
 					<p:commandButton value="Прикрепить документ" update="@none" />
 				</p:panelGrid>
 			</p:panelGrid>
 		</p:panel>
 	</p:dataGrid>
+	
+	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" />
 </ui:composition>

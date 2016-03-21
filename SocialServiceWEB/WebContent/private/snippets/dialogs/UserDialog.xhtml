@@ -20,6 +20,42 @@
 						<p:inputText id="password" value="#{userBean.selection.passwordTUser}" />
 					</p:column>
 				</p:row>
+				
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Организация:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:autoComplete dropdown="true" value="#{userBean.selection.employee.organization}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{organizationConverter}" completeMethod="#{organizationBean.complete}" size="50" />
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Фамилия:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText id="surname" value="#{userBean.selection.employee.surnameEmployee}" />
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Имя:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText id="name" value="#{userBean.selection.employee.nameEmployee}" />
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Отчество:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText id="patronymic" value="#{userBean.selection.employee.patronymicEmployee}" />
+					</p:column>
+				</p:row>
 			</p:panelGrid>
 			
 			<p:outputPanel style="text-align:right;padding:2px;">

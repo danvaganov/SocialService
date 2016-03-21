@@ -43,9 +43,10 @@
 }
 
 .body-background {
-	background-image: url("#{resource['img:background.png']}");
+	background-image: url("#{resource['img:son.png']}");
 	width: 100%;
 	height: 100%;
-	background-repeat: no-repeat;
+	/*background-repeat: no-repeat;*/
+	background-repeat: repeat;
 	background-attachment: fixed;
 }

@@ -37,10 +37,28 @@
 						<p:autoComplete dropdown="true" value="#{personServiceBean.selection.organization}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{organizationConverter}" completeMethod="#{organizationBean.complete}" size="50" />
 					</p:column>
 				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Копия документа:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<h:form сlass="noupdate">
+							<p:fileUpload fileUploadListener="#{personServiceBean.handleFileUpload}" mode="advanced" auto="true"/>
+						</h:form>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Комментарий"/>
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputTextarea value="#{personServiceBean.selection.comment}" rows="3" cols="50" />
+					</p:column>
+				</p:row>
 			</p:panelGrid>
 
 			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton actionListener="#{personBean.updatePerson()}" value="Ok" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" />
+				<p:commandButton actionListener="#{personBean.updatePerson()}" value="Ok" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" process="@(:input:not(.noupdate))"/>
 				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />
 			</p:outputPanel>
 		</h:form>
