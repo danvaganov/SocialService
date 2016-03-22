@@ -244,5 +244,5 @@ public class Person implements Serializable{
 				+ ", patronymicPerson=" + patronymicPerson + ", birthdayPerson=" + birthdayPerson + ", foto="
 				+ Arrays.toString(foto) + ", passport=" + passport + "]";
 	}
-	
+
 }

@@ -20,17 +20,18 @@ public class PersonEducationBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Prepare",  "") );
 		selection = new PersonEducation();
+		selection.setPerson(personBean.getSelection());
 	}
 
 	public void update ()
 	{
-		if (selection.getPerson() == null)
+		if(selection.getId() == 0)
 		{
 			personBean.getSelection().addPersonEducation(selection);
-			selection.setPerson(personBean.getSelection());
+			//personEducationEJB.insert(selection);
 		}
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Update",  "") );
+		//else
+			//personEducationEJB.update(selection);
 	}
 	
 	public PersonBean getPersonBean() {
@@ -49,6 +50,8 @@ public class PersonEducationBean {
 
 
 	public void setSelection(PersonEducation selection) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("SetSelection "+selection.toString(), ""));
 		this.selection = selection;
 	}
 }

@@ -1,7 +1,6 @@
 package ru.bisoft.socialservice.jsf.bean;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

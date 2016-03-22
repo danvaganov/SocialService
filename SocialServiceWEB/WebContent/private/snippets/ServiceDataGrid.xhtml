@@ -8,10 +8,10 @@
         </f:facet>
 
 		<p:panel header="#{personService.person.surnamePerson} #{personService.person.namePerson} #{personService.person.patronymicPerson}">
-			<p:panelGrid columns="3" layout="grid">
-				<p:panelGrid columns="2" layout="grid">
+			<p:panelGrid columns="2" layout="grid" style="text-align: center">
+				<p:panelGrid columns="2" layout="grid" style="text-align: left">
 					<h:outputLabel for="name" value="Мероприятие:" />
-					<h:outputText id="name" value="#{personService.service.name}" styleClass="text-bold"/>
+					<h:outputText id="name" value="#{personService.service.name}" styleClass="text-bold" />
 
 					<h:outputLabel for="date" value="Назначено:" />
 					<h:outputText id="date" value="#{personService.date}" styleClass="text-bold">
@@ -19,20 +19,17 @@
 					</h:outputText>
 
 					<h:outputLabel for="status" value="Статус:" />
-					<h:outputText id="status" value="#{personService.status.label}" styleClass="text-bold" style="color: #{personService.status.cssColor}"/>
+					<h:outputText id="status" value="#{personService.status.label}" styleClass="text-bold" style="color: #{personService.status.cssColor}" />
 
-<!-- 					<p:selectOneMenu value="#{personService.status}"> -->
-<!-- 						<f:selectItems value="#{personServiceBean.statuses}" var="status" itemLabel="#{status.label}" itemValue="#{status}" /> -->
-<!-- 					</p:selectOneMenu> -->
+					<h:outputLabel for="comment" value="Примечание:" />
+					<h:outputText id="comment" value="#{personService.comment}" styleClass="text-bold" />
+
+					<h:outputLabel for="attachment" value="Документ:" />
+					<p:commandButton id="attachment" value="Просмотр" update="@none" rendered="true"/>
 				</p:panelGrid>
 
-				<p:panelGrid layout="grid" columns="1">
-
-				</p:panelGrid>
-
-				<p:panelGrid layout="grid" columns="1">
-					<p:commandButton actionListener="#{personBean.setSelection(personService.person)}" value="Просмотр ИП" update="@none" />
-					<p:commandButton value="Прикрепить документ" update="@none" />
+				<p:panelGrid layout="grid" columns="1" style="text-align: right">
+					<p:commandButton actionListener="#{personBean.setSelection(personService.person)}" value="Просмотр ИПРО" update="@none" />
 				</p:panelGrid>
 			</p:panelGrid>
 		</p:panel>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="personEducation" required="true" />
+	<composite:attribute name="update" />
+</composite:interface>
+
+<composite:implementation>
+	<p:dialog id="#{cc.clientId}" header="Образование" widgetVar="personEducationDialog" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+		<h:form id="personEducationDialogForm">
+			<p:panelGrid rendered="#{personEducation != null}">
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Образование:" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:autoComplete dropdown="true" value="#{cc.attrs.personEducation.education}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{educationConverter}" completeMethod="#{educationBean.complete}" size="50" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Учереждение" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{cc.attrs.personEducation.institution}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Дата окончания" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:calendar value="#{cc.attrs.personEducation.expiration}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">
+						<h:outputText value="Специальность" />
+					</p:column>
+					<p:column style="font-weight: bold;">
+						<p:inputText value="#{cc.attrs.personEducation.specialty}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton value="Ok" oncomplete="PF('personEducationDialog').hide()" update="#{cc.attrs.update}" />
+				<p:commandButton value="Cancel" onclick="PF('personEducationDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>

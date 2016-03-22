@@ -3,6 +3,7 @@ package ru.bisoft.socialservice.model;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,8 +19,13 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "PERSON_EDUCATION")
 @SequenceGenerator(name = "PERSON_EDUCATION_GEN_ID", allocationSize = 1, initialValue = 1)
-public class PersonEducation {
+public class PersonEducation implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7226261945379263891L;
+
 	@Id
 	@Column(name = "KEY_PERSON_EDUCATION")
 	@GeneratedValue(generator = "PERSON_EDUCATION_GEN_ID", strategy = SEQUENCE)
@@ -90,5 +96,32 @@ public class PersonEducation {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonEducation [id=" + id + ", institution=" + institution + ", expiration=" + expiration + ", specialty=" + specialty + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonEducation other = (PersonEducation) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 }
