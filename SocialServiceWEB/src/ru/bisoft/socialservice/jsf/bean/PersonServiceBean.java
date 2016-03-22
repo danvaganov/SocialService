@@ -1,11 +1,15 @@
 package ru.bisoft.socialservice.jsf.bean;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
 
 import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.ejb.dao.PersonServiceEJB;
@@ -34,11 +38,19 @@ public class PersonServiceBean {
 	}
 
 	public void update() {
+		//personServiceEJB.update(selection);
 		personEJB.update(selection.getPerson());
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("Update", ""));
 	}
+	
+	public void handleFileUpload(FileUploadEvent event) throws IOException {
+		selection.setDocument(IOUtils.toByteArray(event.getFile().getInputstream()));
+		
+        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
 	public PersonBean getPersonBean() {
 		return personBean;

@@ -6,8 +6,10 @@
 	<title>Вход</title>
 </h:head>
 <h:body styleClass="body-background">
+	<ui:include src="/private/snippets/Header.xhtml" />
+	
 	<h:form>
-		<p:panel style="width:400px">
+		<p:panel style="position:absolute;width:300px;heidht:154px;left:50%;top:50%;margin-top:-90px;margin-left:-150px;">
 			<h3>Авторизация в системе:</h3>
 			<p:messages id="messages" autoUpdate="true" />
 			<h:panelGrid columns="2" columnClasses="label, value">
@@ -19,5 +21,35 @@
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
+	
+	<p:panelGrid style="vertical-align:bottom;">
+		<ui:include src="/private/snippets/Footer.xhtml" />
+	</p:panelGrid>
+	
+<!-- 	<p:layout fullPage="true"> -->
+<!-- 		<p:layoutUnit position="north" size="100"> -->
+<!-- 			<ui:include src="/private/snippets/Header.xhtml" /> -->
+<!-- 		</p:layoutUnit> -->
+	
+<!-- 		<p:layoutUnit position="center" style="background:white !important;"> -->
+<!-- 			<h:form> -->
+<!-- 				<p:panel style="width:400px;margin-left:auto;margin-right:auto;"> -->
+<!-- 					<h3>Авторизация в системе:</h3> -->
+<!-- 					<p:messages id="messages" autoUpdate="true" /> -->
+<!-- 					<h:panelGrid columns="2" columnClasses="label, value"> -->
+<!-- 						<h:outputLabel for="username" value="Имя пользователя" /> -->
+<!-- 						<p:inputText value="#{loginBean.username}" required="true" label="Имя пользователя" /> -->
+<!-- 						<h:outputLabel for="password" value="Пароль" /> -->
+<!-- 						<p:password id="password" value="#{loginBean.password}" required="true" label="Пароль" /> -->
+<!-- 						<p:commandButton value="Вход" actionListener="#{loginBean.login}" /> -->
+<!-- 					</h:panelGrid> -->
+<!-- 				</p:panel> -->
+<!-- 			</h:form> -->
+<!-- 		</p:layoutUnit> -->
+	
+<!-- 		<p:layoutUnit position="south" size="100" style="height:50px;background-color:white !important;"> -->
+<!-- 			<ui:include src="/private/snippets/Footer.xhtml" /> -->
+<!-- 		</p:layoutUnit> -->
+<!-- 	</p:layout> -->
 </h:body>
 </html>

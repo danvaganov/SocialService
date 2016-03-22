@@ -124,6 +124,20 @@ public class PersonBean extends LazyDataModel<Person> {
 			e.printStackTrace();
 		}
 	}
+	
+	public void showServiceDocument(PersonService personService){
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
+		try {
+			httpServletResponse.reset();
+			httpServletResponse.addHeader("Content-Type", "application/pdf");
+			httpServletResponse.getOutputStream().write(personService.getDocument());
+			context.responseComplete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void removePersonService(PersonService personService) {
 		personService.getPerson().removePersonService(personService);

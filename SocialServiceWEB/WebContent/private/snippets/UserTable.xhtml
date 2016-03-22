@@ -12,13 +12,13 @@
 			<p:column headerText="Пароль" filterBy="#{user.passwordTUser}" filterMatchMode="contains">
 				<h:outputText value="#{user.passwordTUser}" />
 			</p:column>
+			
+			<p:column headerText="Фамилия" filterBy="#{user.employee.surnameEmployee}" filterMatchMode="contains">
+				<h:outputText value="#{user.employee.surnameEmployee}" />
+			</p:column>
 
 			<p:column headerText="Имя" filterBy="#{user.employee.nameEmployee}" filterMatchMode="contains">
 				<h:outputText value="#{user.employee.nameEmployee}" />
-			</p:column>
-
-			<p:column headerText="Фамилия" filterBy="#{user.employee.surnameEmployee}" filterMatchMode="contains">
-				<h:outputText value="#{user.employee.surnameEmployee}" />
 			</p:column>
 
 			<p:column headerText="Отчество" filterBy="#{user.employee.patronymicEmployee}" filterMatchMode="contains">
