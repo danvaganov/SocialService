@@ -9,7 +9,7 @@
 		</p:tab>
 		<!-- Образование -->
 		<p:tab title="Образование">
-			<ccomp:personEducationTable id="personEducationTable" person="#{personView.person}" selection="#{personEducationView.personEducation}" oncomplete="PF('personEducationDialog').show()" update="@form:personTabView:personEducation" />
+			<ccomp:personEducationTable id="personEducationTable" person="#{personView.person}" selection="#{personEducationView.personEducation}" oncomplete="PF('personEducationDialog').show()" update="@form:personTabView:personEducation"/>
 
 			<p:dialog header="Образование" widgetVar="personEducationDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
 				<ccomp:personEducation id="personEducation" personEducation="#{personEducationView.personEducation}" educationCompleteMethod="#{personEducationView.complete}" />
@@ -59,7 +59,7 @@
 		<p:tab title="Документы">
 			<ccomp:personDocumentTable id="personDocumentTable" person="#{personView.person}" selection="#{personDocumentBean.selection}" oncomplete="PF('personDocumentDialog').show()" update="@form:personTabView:personDocument" />
 
-			<p:dialog header="Источники дохода" widgetVar="personDocumentDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
+			<p:dialog header="Документы" widgetVar="personDocumentDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
 				<ccomp:personDocument id="personDocument" personDocument="#{personDocumentBean.selection}"/>
 				<p:outputPanel style="text-align:right;padding:2px;">
 					<p:commandButton value="Ok" oncomplete="PF('personDocumentDialog').hide()" update="@form:personTabView:personDocumentTable" process="@form:personTabView:personDocument" />

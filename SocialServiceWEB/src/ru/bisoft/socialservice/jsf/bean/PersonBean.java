@@ -113,6 +113,7 @@ public class PersonBean extends LazyDataModel<Person> {
 
 	public void showDocument(PersonDocument personDocument) {
 		FacesContext context = FacesContext.getCurrentInstance();
+		System.err.println(personDocument.getCopy().length);
 		ExternalContext externalContext = context.getExternalContext();
 		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
 		try {

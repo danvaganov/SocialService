@@ -10,22 +10,46 @@
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<p:panel header="Паспортные данные">
-		<h:panelGrid columns="2" columnClasses="label, value">
-			<h:outputText value="Серия: *" />
-			<p:inputMask id="serialPassport" value="#{cc.attrs.passport.serialPassport}" label="Серия паспорта" mask="9999" size="4" />
-
-			<h:outputText value="Номер: *" />
-			<p:inputMask id="numberPassport" value="#{cc.attrs.passport.numberPassport}" label="Номер паспорта" mask="999999" size="6" />
-
-			<h:outputText value="Выдан: *" />
-			<p:inputTextarea id="issuePassport" rows="2" cols="60" value="#{cc.attrs.passport.issuePassport}" />
-
-			<h:outputText value="Дата выдачи: *" />
-			<p:calendar id="issueDatePassport" value="#{cc.attrs.passport.issueDatePassport}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
-
-			<h:outputText value="Регистрация: " />
-			<p:inputTextarea id="registrationPassport" rows="2" cols="60" value="#{cc.attrs.passport.registrationPassport}" />
-		</h:panelGrid>
+		<p:panelGrid>
+			<p:row>
+				<p:column>
+					Серия:
+				</p:column>
+				<p:column>
+					<p:inputMask id="serialPassport" value="#{cc.attrs.passport.serialPassport}" label="Серия паспорта" mask="9999" size="4" />
+				</p:column>
+				<p:column>
+					Номер:
+				</p:column>
+				<p:column>
+					<p:inputMask id="numberPassport" value="#{cc.attrs.passport.numberPassport}" label="Номер паспорта" mask="999999" size="6" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					Выдан:
+				</p:column>
+				<p:column colspan="5">
+					<p:inputTextarea id="issuePassport" rows="2" cols="60" value="#{cc.attrs.passport.issuePassport}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					Дата выдачи:
+				</p:column>
+				<p:column colspan="5">
+					<p:calendar id="issueDatePassport" value="#{cc.attrs.passport.issueDatePassport}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					Регистрация:
+				</p:column>
+				<p:column colspan="5">
+					<p:inputTextarea id="registrationPassport" rows="2" cols="60" value="#{cc.attrs.passport.registrationPassport}" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
 	</p:panel>
 </composite:implementation>
 </html>

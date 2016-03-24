@@ -4,7 +4,7 @@
 	<h:form id="personTableForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:dataTable widgetVar="personTableWidget" value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personView.person}" lazy="true" selectionMode="single" rowExpandMode="single">
-			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update="@form:personTabView" />
+			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm:personTabView" />
 			<p:ajax event="rowToggle" listener="#{personBean.onRowToggle}" update="@none" />
 
 			<p:column style="width:16px">
@@ -73,15 +73,18 @@
 				<p:commandButton value="Добавить новый пункт" actionListener="#{personView.prepareInsert()}" oncomplete="PF('personDialog').show()" />
 			</f:facet>
 		</p:dataTable>
+	</h:form>
 
-		<p:dialog id="personDialog" header="Клиент" widgetVar="personDialog" showEffect="fade" hideEffect="fade" resizable="false" height="500px" modal="true">
+
+	<p:dialog id="personDialog" header="Клиент" widgetVar="personDialog" showEffect="fade" hideEffect="fade" resizable="false" height="500px">
+		<h:form id="personDialogForm">
 			<ui:include src="/private/snippets/PersonView.xhtml" />
 			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton value="Ok" actionListener="#{personView.update()}" oncomplete="PF('personDialog').hide()" update="@form:personTable" process="@this" />
+				<p:commandButton value="Ok" actionListener="#{personView.update()}" oncomplete="PF('personDialog').hide()" update=":personTableForm:personTable" process="@this" />
 				<p:commandButton value="Cancel" onclick="PF('personDialog').hide()" process="@none" />
 			</p:outputPanel>
-		</p:dialog>
-	</h:form>
+		</h:form>
+	</p:dialog>
 
 
 

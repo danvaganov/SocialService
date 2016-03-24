@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import ru.bisoft.socialservice.ejb.dao.EducationEJB;
 import ru.bisoft.socialservice.model.Education;

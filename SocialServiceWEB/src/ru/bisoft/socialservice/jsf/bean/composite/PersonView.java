@@ -1,8 +1,6 @@
 package ru.bisoft.socialservice.jsf.bean.composite;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.jsf.bean.LoginBean;
