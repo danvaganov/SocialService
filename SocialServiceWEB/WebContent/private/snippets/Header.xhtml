@@ -4,13 +4,14 @@
 	<p:panelGrid style="width:100%">
 		<p:row>
 			<p:column style="width:5%">
-				<h:graphicImage library="img" name="wheelchair.png" width="70" style="float:left;"></h:graphicImage>
+				<h:graphicImage library="img" name="logo.png" style="float:left;height:80px;"></h:graphicImage>
 			</p:column>
-			<p:column style="width:75%">
-				<h1>Индивидуальная программа реабилитации осужденного</h1>
+			<p:column style="width:75%;">
+				<h1 style="margin-top:5px;margin-bottom:7px;">МЕЖВЕДОМСТВЕННАЯ СИСТЕМА</h1>
+				<h2 style="margin-top:5px;margin-bottom:7px;">по реабилитации лиц, освобождающихся из мест лишения свободы</h2>
 			</p:column>
 			<p:column style="width:20%">
-				<h:form rendered="#{loginBean.tUser != null}">
+				<h:form rendered="#{loginBean.tUser != null}">>
 					<p:outputLabel value="#{loginBean.tUser.employee.organization}"></p:outputLabel>
 					<br />
 					<p:outputLabel value="#{loginBean.tUser.employee}"></p:outputLabel>
