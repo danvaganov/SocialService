@@ -5,44 +5,45 @@
 
 <!-- INTERFACE -->
 <composite:interface>
-	<composite:attribute name="personEducation" />
-	<composite:attribute name="educationCompleteMethod" required="true"/>
+	<composite:attribute name="personDocument" />
 </composite:interface>
 
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:panelGrid rendered="#{cc.attrs.personEducation != null}">
+		<p:panelGrid rendered="#{cc.attrs.personDocument != null}">
 			<p:row>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Образование:" />
+					<h:outputText value="Наименование:" />
 				</p:column>
 				<p:column style="font-weight: bold;">
-					<p:autoComplete dropdown="true" value="#{cc.attrs.personEducation.education}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{educationConverter}" completeMethod="#{cc.attrs.educationCompleteMethod}" size="50" />
+					<p:inputText value="#{cc.attrs.personDocument.name}" />
 				</p:column>
 			</p:row>
 			<p:row>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Учереждение" />
+					<h:outputText value="Серия:" />
 				</p:column>
 				<p:column style="font-weight: bold;">
-					<p:inputText value="#{cc.attrs.personEducation.institution}" />
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column style="font-weight: bold;">
-					<h:outputText value="Дата окончания" />
-				</p:column>
-				<p:column style="font-weight: bold;">
-					<p:calendar value="#{cc.attrs.personEducation.expiration}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					<p:inputText value="#{cc.attrs.personDocument.serial}" />
 				</p:column>
 			</p:row>
 			<p:row>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Специальность" />
+					<h:outputText value="Номер:" />
 				</p:column>
 				<p:column style="font-weight: bold;">
-					<p:inputText value="#{cc.attrs.personEducation.specialty}" />
+					<p:inputText value="#{cc.attrs.personDocument.number}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Копия документа:" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<h:form сlass="noupdate">
+						<p:fileUpload fileUploadListener="#{personDocumentBean.handleFileUpload}" mode="advanced" auto="true" />
+					</h:form>
 				</p:column>
 			</p:row>
 		</p:panelGrid>

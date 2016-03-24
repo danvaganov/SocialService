@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite">
+
+<!-- INTERFACE -->
+<composite:interface>
+	<composite:attribute name="personDisability" />
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+	<div id="#{cc.clientId}">
+		<p:panelGrid rendered="#{cc.attrs.personDisability != null}">
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Установлено:" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:selectOneMenu value="#{cc.attrs.personDisability.settingType}">
+						<f:selectItems value="#{cc.attrs.personDisability.getSettingTypeArray()}" var="settingType" itemLabel="#{settingType.label}" itemValue="#{settingType}" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="На дату" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:calendar value="#{cc.attrs.personDisability.settingDate}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Группа" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:selectOneMenu value="#{cc.attrs.personDisability.group}">
+						<f:selectItems value="#{cc.attrs.personDisability.getGroupDisabilityArray()}" var="group" itemLabel="#{group.label}" itemValue="#{group}" />
+					</p:selectOneMenu>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Серия" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:inputText value="#{cc.attrs.personDisability.documentSerial}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Номер" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:inputText value="#{cc.attrs.personDisability.documentNumber}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="font-weight: bold;">
+					<h:outputText value="Установлено до" />
+				</p:column>
+				<p:column style="font-weight: bold;">
+					<p:calendar value="#{cc.attrs.personDisability.limitation}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</div>
+</composite:implementation>
+</html>

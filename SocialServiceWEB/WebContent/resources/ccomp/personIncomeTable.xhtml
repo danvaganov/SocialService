@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite">
+
+<!-- INTERFACE -->
+<composite:interface>
+	<composite:attribute name="person" />
+	<composite:attribute name="selection" />
+	<composite:attribute name="addActionListener" default="null" />
+	<composite:attribute name="oncomplete" />
+	<composite:attribute name="update" />
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+	<div id="#{cc.clientId}">
+		<p:dataTable value="#{cc.attrs.person.personIncomeList}" selection="#{cc.attrs.selection}" var="personIncome" rowKey="#{personIncome.id}" selectionMode="single">
+			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
+
+			<p:column headerText="Источник">
+				<h:outputText value="#{personIncome.income.name}" />
+			</p:column>
+
+			<p:column headerText="Сумма">
+				<h:outputText value="#{personIncome.sum}" />
+			</p:column>
+
+			<p:column headerText="На дату">
+				<h:outputText value="#{personIncome.date}">
+					<f:convertDateTime pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column styleClass="ui_button_column">
+				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonIncome(personIncome)}" update=":#{cc.clientId}" process="@this" />
+			</p:column>
+
+			<f:facet name="footer" style="text-align:right;">
+				<p:commandButton value="Добавить" actionListener="#{cc.attrs.addActionListener}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
+			</f:facet>
+		</p:dataTable>
+	</div>
+</composite:implementation>
+</html>

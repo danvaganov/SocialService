@@ -151,6 +151,10 @@ public class PersonDisability {
 			return label;
 		}
 	}
+	public static GroupDisability[] getGroupDisabilityArray()
+	{
+		return GroupDisability.values();
+	}
 	public static enum SettingType{
 		FIRST("Первично"), 
 		REPEATEDLY("Повторно");
@@ -164,5 +168,8 @@ public class PersonDisability {
 			return label;
 		}
 	}
-
+	public static SettingType[] getSettingTypeArray()
+	{
+		return SettingType.values();
+	}
 }

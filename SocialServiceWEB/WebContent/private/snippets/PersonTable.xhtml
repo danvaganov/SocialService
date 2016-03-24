@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:components="http://java.sun.com/jsf/composite/ccomp">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 	<h:form id="personTableForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
-		<p:dataTable widgetVar="personTableWidget" value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personBean.selection}" lazy="true" selectionMode="single" rowExpandMode="single">
-			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update="@form:personDialog:personTabView" />
+		<p:dataTable widgetVar="personTableWidget" value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personView.person}" lazy="true" selectionMode="single" rowExpandMode="single">
+			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update="@form:personTabView" />
 			<p:ajax event="rowToggle" listener="#{personBean.onRowToggle}" update="@none" />
 
 			<p:column style="width:16px">
@@ -35,7 +35,7 @@
 
 			<p:rowExpansion>
 				<p:dataTable id="personServiceTable" styleClass="servtable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process="@this" />
+					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process=":personDialogForm" />
 
 					<p:column headerText="Наименование">
 						<h:outputText value="#{personService.service.name}" />
@@ -54,10 +54,10 @@
 					<p:column headerText="Поставщик">
 						<h:outputText value="#{personService.organization.nameOrganization}" />
 					</p:column>
-					
+
 					<p:column styleClass="ui_button_column" headerText="Просмотр">
-							<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personBean.showServiceDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
-						</p:column>
+						<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personBean.showServiceDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+					</p:column>
 
 					<p:column styleClass="ui_button_column">
 						<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.removePersonService(personService)}" update="@form:personTable:personServiceTable" />
@@ -70,12 +70,20 @@
 			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
-				<p:commandButton value="Добавить новый пункт" actionListener="#{personBean.prepareInsert()}" oncomplete="PF('personDialog').show()" />
+				<p:commandButton value="Добавить новый пункт" actionListener="#{personView.prepareInsert()}" oncomplete="PF('personDialog').show()" />
 			</f:facet>
 		</p:dataTable>
 
-		<components:personDialog id="personDialog" person="#{personBean.selection}" okAction="#{personBean.updatePerson()}" update="@form:personTable" />
+		<p:dialog id="personDialog" header="Клиент" widgetVar="personDialog" showEffect="fade" hideEffect="fade" resizable="false" height="500px" modal="true">
+			<ui:include src="/private/snippets/PersonView.xhtml" />
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton value="Ok" actionListener="#{personView.update()}" oncomplete="PF('personDialog').hide()" update="@form:personTable" process="@this" />
+				<p:commandButton value="Cancel" onclick="PF('personDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</p:dialog>
 	</h:form>
+
+
 
 	<!-- 	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" /> -->
 	<ui:include src="/private/snippets/dialogs/PersonServiceDialog.xhtml" />

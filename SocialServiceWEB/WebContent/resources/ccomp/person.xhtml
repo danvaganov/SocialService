@@ -4,225 +4,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite" xmlns:components="http://java.sun.com/jsf/composite/ccomp">
 
 <composite:interface>
-	<composite:attribute name="person" required="true"></composite:attribute>
+	<composite:attribute name="person" />
 </composite:interface>
 
 <composite:implementation>
-	<p:tabView id="personTabView" dynamic="true">
-		<p:tab title="Основные сведения">
-			<p:panelGrid>
-				<p:row>
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Имя:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="namePerson" value="#{cc.attrs.person.namePerson}" />
-					</p:column>
-				</p:row>
-				<p:row style="background:transparent;">
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Фамилия:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="surname" value="#{cc.attrs.person.surnamePerson}" />
-					</p:column>
-				</p:row>
-				<p:row style="background:transparent;">
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Отчество:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="patronymic" value="#{cc.attrs.person.patronymicPerson}" />
-					</p:column>
-				</p:row>
-				<p:row style="background:transparent;">
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Дата рождения:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:calendar id="birthdayPerson" value="#{cc.attrs.person.birthdayPerson}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
-					</p:column>
-				</p:row>
-			</p:panelGrid>
-			<!-- Паспортные данные -->
-			<p:panel header="Паспортные данные">
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Серия: *" />
-					<p:inputMask id="serialPassport" value="#{cc.attrs.person.passport.serialPassport}" label="Серия паспорта" mask="9999" size="4" />
-
-					<h:outputText value="Номер: *" />
-					<p:inputMask id="numberPassport" value="#{cc.attrs.person.passport.numberPassport}" label="Номер паспорта" mask="999999" size="6" />
-
-					<h:outputText value="Выдан: *" />
-					<p:inputTextarea id="issuePassport" rows="2" cols="60" value="#{cc.attrs.person.passport.issuePassport}" />
-
-					<h:outputText value="Дата выдачи: *" />
-					<p:calendar id="issueDatePassport" value="#{cc.attrs.person.passport.issueDatePassport}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
-
-					<h:outputText value="Регистрация: " />
-					<p:inputTextarea id="registrationPassport" rows="2" cols="60" value="#{cc.attrs.person.passport.registrationPassport}" />
-				</h:panelGrid>
-			</p:panel>
-		</p:tab>
-		<!-- Образование -->
-		<p:tab title="Образование">
-			<p:dataTable id="personEducationTable" value="#{cc.attrs.person.personEducationList}" selection="#{personEducationBean.selection}" var="personEducation" rowKey="#{personEducation.id}" selectionMode="single">
-				<p:ajax event="rowSelect" oncomplete="PF('personEducationDialog').show()" update=":personEducationDialogForm" />
-
-				<p:column headerText="Образование">
-					<h:outputText value="#{personEducation.education}" />
-				</p:column>
-
-				<p:column headerText="Уч. заведение">
-					<h:outputText value="#{personEducation.institution}" />
-				</p:column>
-
-				<p:column headerText="Окончание">
-					<h:outputText value="#{personEducation.expiration}">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
-					</h:outputText>
-				</p:column>
-
-				<p:column headerText="Специальность">
-					<h:outputText value="#{personEducation.specialty}" />
-				</p:column>
-
-				<p:column styleClass="ui_button_column">
-					<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonEducation(personEducation)}" update="@form" />
-				</p:column>
-
-				<!-- <f:facet name="footer" style="text-align:right;"> -->
-				<!-- 	<p:commandButton value="Добавить" actionListener="#{personEducationBean.prepareInsert}" oncomplete="PF('personEducationDialog').show()" update=":personEducationDialogForm" /> -->
-				<!-- </f:facet> -->
-			</p:dataTable>
-		</p:tab>
-		<!-- Инвалидность -->
-		<p:tab title="Инвалидность">
-			<p:dataTable id="personDisabilityTable" value="#{cc.attrs.person.personDisabilityList}" selection="#{personDisabilityBean.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
-				<!-- <p:ajax event="rowSelect" oncomplete="PF('personDisabilityDialog').show()" update=":personDisabilityDialogForm" /> -->
-
-				<p:column headerText="Установлено">
-					<h:outputText value="#{personDisability.settingType.label}" />
-				</p:column>
-
-				<p:column headerText="На дату">
-					<h:outputText value="#{personDisability.settingDate}">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
-					</h:outputText>
-				</p:column>
-
-				<p:column headerText="Группа">
-					<h:outputText value="#{personDisability.group.label}" />
-				</p:column>
-
-				<p:column headerText="Серия">
-					<h:outputText value="#{personDisability.documentSerial}" />
-				</p:column>
-
-				<p:column headerText="Номер">
-					<h:outputText value="#{personDisability.documentNumber}" />
-				</p:column>
-
-				<p:column headerText="Установлено до">
-					<h:outputText value="#{personDisability.limitation}">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
-					</h:outputText>
-				</p:column>
-
-				<p:column styleClass="ui_button_column">
-					<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonDisability(personDisability)}" update="@form" />
-				</p:column>
-
-				<!-- <f:facet name="footer" style="text-align:right;"> -->
-				<!-- 	<p:commandButton value="Добавить" actionListener="#{personDisabilityBean.prepareInsert}" oncomplete="PF('personDisabilityDialog').show()" update=":personDisabilityDialogForm" /> -->
-				<!-- </f:facet> -->
-			</p:dataTable>
-		</p:tab>
-		<!-- Источники дохода -->
-		<p:tab title="Источники дохода">
-			<p:dataTable id="personIncomeTable" value="#{cc.attrs.person.personIncomeList}" selection="#{personIncomeBean.selection}" var="personIncome" rowKey="#{personIncome.id}" selectionMode="single">
-				<!-- <p:ajax event="rowSelect" oncomplete="PF('personIncomeDialog').show()" update=":personIncomeDialogForm" /> -->
-
-				<p:column headerText="Источник">
-					<h:outputText value="#{personIncome.income.name}" />
-				</p:column>
-
-				<p:column headerText="Сумма">
-					<h:outputText value="#{personIncome.sum}" />
-				</p:column>
-
-				<p:column headerText="На дату">
-					<h:outputText value="#{personIncome.date}">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
-					</h:outputText>
-				</p:column>
-
-				<p:column styleClass="ui_button_column">
-					<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonIncome(personIncome)}" update="@form" />
-				</p:column>
-
-				<!-- <f:facet name="footer" style="text-align:right;"> -->
-				<!-- 	<p:commandButton value="Добавить" actionListener="#{personIncomeBean.prepareInsert}" oncomplete="PF('personIncomeDialog').show()" update=":personIncomeDialogForm" /> -->
-				<!-- </f:facet> -->
-			</p:dataTable>
-		</p:tab>
-		<!-- Профессии -->
-		<p:tab title="Профессии">
-			<p:dataTable id="personProfessionTable" value="#{cc.attrs.person.personProfessionList}" selection="#{personProfessionBean.selection}" var="personProfession" rowKey="#{personProfession.id}" selectionMode="single">
-				<!-- <p:ajax event="rowSelect" oncomplete="PF('personProfessionDialog').show()" update=":personProfessionDialogForm" /> -->
-
-				<p:column headerText="Профессия">
-					<h:outputText value="#{personProfession.profession.name}" />
-				</p:column>
-
-				<p:column headerText="Место работы">
-					<h:outputText value="#{personProfession.organization}" />
-				</p:column>
-
-				<p:column headerText="Адрес">
-					<h:outputText value="#{personProfession.address}" />
-				</p:column>
-
-				<p:column styleClass="ui_button_column">
-					<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonProfession(personProfession)}" update="@form" />
-				</p:column>
-
-				<!-- <f:facet name="footer" style="text-align:right;"> -->
-				<!-- 	<p:commandButton value="Добавить" actionListener="#{personProfessionBean.prepareInsert}" oncomplete="PF('personProfessionDialog').show()" update=":personProfessionDialogForm" /> -->
-				<!-- </f:facet> -->
-			</p:dataTable>
-		</p:tab>
-		<!-- Документы -->
-		<p:tab title="Документы">
-			<p:dataTable id="personDocumentTable" value="#{cc.attrs.person.personDocumentList}" selection="#{personDocumentBean.selection}" var="personDocument" rowKey="#{personDocument.id}" selectionMode="single">
-				<!-- <p:ajax event="rowSelect" oncomplete="PF('personDocumentDialog').show()" update=":personDocumentDialogForm" /> -->
-
-				<p:column headerText="Наименование">
-					<h:outputText value="#{personDocument.name}" />
-				</p:column>
-
-				<p:column headerText="Серия">
-					<h:outputText value="#{personDocument.serial}" />
-				</p:column>
-
-				<p:column headerText="Номер">
-					<h:outputText value="#{personDocument.number}" />
-				</p:column>
-
-				<p:column styleClass="ui_button_column" headerText="Просмотр">
-					<p:commandButton rendered="#{personDocument.copy != null}" icon="ui-icon-search" value="Просмотр" action="#{personBean.showDocument(personDocument)}" process="@none" ajax="false" onclick="form.target='_blank'" />
-				</p:column>
-
-				<p:column styleClass="ui_button_column">
-					<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.selection.removePersonDocument(personDocument)}" update="@form" />
-				</p:column>
-
-				<!-- <f:facet name="footer" style="text-align:right;"> -->
-				<!-- 	<p:commandButton value="Добавить" actionListener="#{personDocumentBean.prepareInsert}" oncomplete="PF('personDocumentDialog').show()" update=":personDocumentDialogForm" /> -->
-				<!-- </f:facet> -->
-			</p:dataTable>
-		</p:tab>
-	</p:tabView>
-	<components:personEducationDialog id="personEducationDialog" update=":personEducationDialogForm"/>
+	<p:panelGrid>
+		<p:row>
+			<p:column style="font-weight: bold;">
+				<h:outputText value="Имя:" />
+			</p:column>
+			<p:column style="font-weight: bold;">
+				<p:inputText id="namePerson" value="#{cc.attrs.person.namePerson}" />
+			</p:column>
+		</p:row>
+		<p:row style="background:transparent;">
+			<p:column style="font-weight: bold;">
+				<h:outputText value="Фамилия:" />
+			</p:column>
+			<p:column style="font-weight: bold;">
+				<p:inputText id="surname" value="#{cc.attrs.person.surnamePerson}" />
+			</p:column>
+		</p:row>
+		<p:row style="background:transparent;">
+			<p:column style="font-weight: bold;">
+				<h:outputText value="Отчество:" />
+			</p:column>
+			<p:column style="font-weight: bold;">
+				<p:inputText id="patronymic" value="#{cc.attrs.person.patronymicPerson}" />
+			</p:column>
+		</p:row>
+		<p:row style="background:transparent;">
+			<p:column style="font-weight: bold;">
+				<h:outputText value="Дата рождения:" />
+			</p:column>
+			<p:column style="font-weight: bold;">
+				<p:calendar id="birthdayPerson" value="#{cc.attrs.person.birthdayPerson}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+			</p:column>
+		</p:row>
+	</p:panelGrid>
 </composite:implementation>
 </html>

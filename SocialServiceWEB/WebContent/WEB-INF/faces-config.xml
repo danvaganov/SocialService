@@ -146,5 +146,20 @@
   <managed-bean-class>ru.bisoft.socialservice.jsf.bean.OrganizationBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>personEducationView</managed-bean-name>
+ 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonEducationView</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>personView</managed-bean-name>
+ 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonView</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ 	<managed-property>
+ 		<property-name>loginBean</property-name>
+ 		<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+ 		<value>#{loginBean}</value>
+ 	</managed-property>
+ </managed-bean>
  <application/>
 </faces-config>
