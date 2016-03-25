@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:ccomp="http://java.sun.com/jsf/composite/ccomp">
 	<h:form id="personTableForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
-		<p:dataTable widgetVar="personTableWidget" value="#{personBean}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personView.person}" lazy="true" selectionMode="single" rowExpandMode="single">
+		<p:dataTable widgetVar="personTableWidget" value="#{personTableView}" id="personTable" var="person" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,100" paginatorPosition="bottom" selection="#{personTableView.selection}" lazy="true" selectionMode="single" rowExpandMode="single">
 			<p:ajax event="rowSelect" oncomplete="PF('personDialog').show()" update=":personDialogForm:personTabView" />
 			<p:ajax event="rowToggle" listener="#{personBean.onRowToggle}" update="@none" />
 
@@ -35,7 +35,7 @@
 
 			<p:rowExpansion>
 				<p:dataTable id="personServiceTable" styleClass="servtable" value="#{person.personServicetList}" selection="#{personServiceBean.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process=":personDialogForm" />
+					<p:ajax event="rowSelect" oncomplete="PF('personServiceDialog').show();" update=":personServiceDialogForm" process="@this" />
 
 					<p:column headerText="Наименование">
 						<h:outputText value="#{personService.service.name}" />
@@ -85,8 +85,18 @@
 		</h:form>
 	</p:dialog>
 
+	<p:dialog id="personServiceDialog" header="Мероприятие" widgetVar="personServiceDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500px">
+		<h:form id="personServiceDialogForm">
+			<ccomp:personService id="personService" personService="#{personServiceBean.selection}" serviceCompleteMethod="#{serviceBean.complete}" organizationCompleteMethod="#{organizationBean.complete}" fileUploadHandler="#{personServiceBean.handleFileUpload}"/>
+			<p:outputPanel style="text-align:right;padding:2px;">
+				<p:commandButton value="Ok" actionListener="#{personView.update()}" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" process="@(:input:not(.noupdate))" />
+				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />
+			</p:outputPanel>
+		</h:form>
+	</p:dialog>
+
 
 
 	<!-- 	<ui:include src="/private/snippets/dialogs/PersonDialog.xhtml" /> -->
-	<ui:include src="/private/snippets/dialogs/PersonServiceDialog.xhtml" />
+<!-- 	<ui:include src="/private/snippets/dialogs/PersonServiceDialog.xhtml" /> -->
 </ui:composition>

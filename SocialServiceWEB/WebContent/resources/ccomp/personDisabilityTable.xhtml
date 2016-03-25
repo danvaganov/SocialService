@@ -15,7 +15,7 @@
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:dataTable value="#{cc.attrs.person.personDisabilityList}" selection="#{personDisabilityBean.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
+		<p:dataTable value="#{cc.attrs.person.personDisabilityList}" selection="#{cc.attrs.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
 			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
 
 			<p:column headerText="Установлено">

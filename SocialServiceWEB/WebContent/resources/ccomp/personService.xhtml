@@ -5,44 +5,54 @@
 
 <!-- INTERFACE -->
 <composite:interface>
-	<composite:attribute name="personEducation" />
-	<composite:attribute name="educationCompleteMethod" required="true"/>
+	<composite:attribute name="personService" />
+	<composite:attribute name="serviceCompleteMethod" required="true" method-signature="java.util.List complete(java.lang.String)"/>
+	<composite:attribute name="organizationCompleteMethod" required="true" method-signature="java.util.List complete(java.lang.String)"/>
+	<composite:attribute name="fileUploadHandler" method-signature="void fileUploadHandler(org.primefaces.event.FileUploadEvent)" />
 </composite:interface>
 
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:panelGrid rendered="#{cc.attrs.personEducation != null}">
+		<p:panelGrid rendered="#{cc.attrs.personService != null}" style="width:100%">
 			<p:row>
+				<p:column>Мероприятие:</p:column>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Образование:" />
-				</p:column>
-				<p:column style="font-weight: bold;">
-					<p:autoComplete dropdown="true" value="#{cc.attrs.personEducation.education}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{educationConverter}" completeMethod="#{cc.attrs.educationCompleteMethod}" size="50" />
+					<p:autoComplete dropdown="true" value="#{cc.attrs.personService.service}" var="e" itemValue="#{e}" itemLabel="#{e.name}" converter="#{serviceConverter}" completeMethod="#{cc.attrs.serviceCompleteMethod}" size="50" />
 				</p:column>
 			</p:row>
 			<p:row>
+				<p:column>Дата:</p:column>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Учереждение" />
-				</p:column>
-				<p:column style="font-weight: bold;">
-					<p:inputText value="#{cc.attrs.personEducation.institution}" />
+					<p:calendar value="#{cc.attrs.personService.date}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
 				</p:column>
 			</p:row>
 			<p:row>
+				<p:column>Статус:</p:column>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Дата окончания" />
-				</p:column>
-				<p:column style="font-weight: bold;">
-					<p:calendar value="#{cc.attrs.personEducation.expiration}" pattern="dd.MM.yyyy" showOn="button" mask="true" timeZone="UTC" />
+					<p:selectOneMenu value="#{cc.attrs.personService.status}">
+						<f:selectItems value="#{cc.attrs.personService.getPersonServiceStatusArray()}" var="status" itemLabel="#{status.label}" itemValue="#{status}" />
+					</p:selectOneMenu>
 				</p:column>
 			</p:row>
 			<p:row>
+				<p:column>Поставщик:</p:column>
 				<p:column style="font-weight: bold;">
-					<h:outputText value="Специальность" />
+					<p:autoComplete dropdown="true" value="#{cc.attrs.personService.organization}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{organizationConverter}" completeMethod="#{cc.attrs.organizationCompleteMethod}" size="50" />
 				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>Копия документа:</p:column>
 				<p:column style="font-weight: bold;">
-					<p:inputText value="#{cc.attrs.personEducation.specialty}" />
+					<h:form сlass="noupdate">
+						<p:fileUpload fileUploadListener="#{cc.attrs.fileUploadHandler}" mode="advanced" auto="true" />
+					</h:form>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>Дополнительно:</p:column>
+				<p:column style="font-weight: bold;">
+					<p:inputTextarea value="#{cc.attrs.personService.comment}" rows="3" cols="50" />
 				</p:column>
 			</p:row>
 		</p:panelGrid>

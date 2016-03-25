@@ -65,6 +65,8 @@ public class PersonServiceBean {
 	}
 
 	public void setSelection(PersonService selection) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("selection", ""));
 		this.selection = selection;
 	}
 

@@ -31,7 +31,7 @@
 			</p:column>
 
 			<p:column styleClass="ui_button_column" headerText="Просмотр">
-				<p:commandButton rendered="#{personDocument.copy != null}" icon="ui-icon-search" value="Просмотр" action="#{personBean.showDocument(personDocument)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+				<p:commandButton rendered="#{personDocument.copy != null}" icon="ui-icon-search" value="Просмотр" action="#{personDocumentView.showDocument(personDocument)}" process="@none" ajax="false" onclick="form.target='_blank'" />
 			</p:column>
 
 			<p:column styleClass="ui_button_column">
