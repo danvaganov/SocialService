@@ -8,21 +8,10 @@ import javax.ejb.EJB;
 
 import ru.bisoft.socialservice.ejb.dao.EducationEJB;
 import ru.bisoft.socialservice.model.Education;
-import ru.bisoft.socialservice.model.PersonEducation;
 
 public class PersonEducationView {
 	@EJB
 	EducationEJB educationEJB;
-	
-	private PersonEducation personEducation;
-
-	public PersonEducation getPersonEducation() {
-		return personEducation;
-	}
-
-	public void setPersonEducation(PersonEducation personEducation) {
-		this.personEducation = personEducation;
-	}
 	
 	public List<Education> complete(String query)
 	{
