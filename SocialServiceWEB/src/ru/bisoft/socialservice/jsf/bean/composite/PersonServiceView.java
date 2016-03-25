@@ -12,7 +12,7 @@ public class PersonServiceView {
 	@EJB
 	PersonServiceEJB personServiceEJB;
 
-	public void showServiceDocument(PersonService personService) {
+	public void showDocument(PersonService personService) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();

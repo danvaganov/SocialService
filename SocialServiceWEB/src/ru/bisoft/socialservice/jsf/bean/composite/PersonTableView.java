@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 
+import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -62,6 +63,10 @@ public class PersonTableView extends LazyDataModel<Person>{
 		}
 	}
 
+	public void onRowToggle(ToggleEvent event) {
+		selection = (Person) event.getData();
+	}
+	
 	public Person getSelection() {
 		return selection;
 	}

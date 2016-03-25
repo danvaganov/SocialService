@@ -211,5 +211,15 @@
  		<value>#{loginBean}</value>
  	</managed-property>
  </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>personServiceTableView</managed-bean-name>
+ 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceTableView</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>personServiceView</managed-bean-name>
+ 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceView</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <application/>
 </faces-config>

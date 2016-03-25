@@ -132,7 +132,5 @@ public class PersonBean extends LazyDataModel<Person> {
 		personEJB.update(personService.getPerson());
 	}
 
-	public void onRowToggle(ToggleEvent event) {
-		selection = (Person) event.getData();
-	}
+
 }
