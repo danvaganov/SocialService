@@ -14,40 +14,38 @@
 
 <!-- IMPLEMENTATION -->
 <composite:implementation>
-	<div id="#{cc.clientId}">
-		<p:dataTable styleClass="servtable" value="#{cc.attrs.person.personServicetList}" selection="#{cc.attrs.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
-			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
+	<p:dataTable id="table" styleClass="servtable" value="#{cc.attrs.person.personServicetList}" selection="#{cc.attrs.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
+		<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
 
-			<p:column headerText="Наименование">
-				<h:outputText value="#{personService.service.name}" />
-			</p:column>
+		<p:column headerText="Наименование">
+			<h:outputText value="#{personService.service.name}" />
+		</p:column>
 
-			<p:column headerText="Дата добавления" width="15%">
-				<h:outputText value="#{personService.date}">
-					<f:convertDateTime pattern="dd.MM.yyyy" />
-				</h:outputText>
-			</p:column>
+		<p:column headerText="Дата добавления" width="15%">
+			<h:outputText value="#{personService.date}">
+				<f:convertDateTime pattern="dd.MM.yyyy" />
+			</h:outputText>
+		</p:column>
 
-			<p:column headerText="Статус">
-				<h:outputText value="#{personService.status.label}" />
-			</p:column>
+		<p:column headerText="Статус">
+			<h:outputText value="#{personService.status.label}" />
+		</p:column>
 
-			<p:column headerText="Поставщик">
-				<h:outputText value="#{personService.organization.nameOrganization}" />
-			</p:column>
+		<p:column headerText="Поставщик">
+			<h:outputText value="#{personService.organization.nameOrganization}" />
+		</p:column>
 
-			<p:column styleClass="ui_button_column" headerText="Просмотр">
-				<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personServiceView.showDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
-			</p:column>
+		<p:column styleClass="ui_button_column" headerText="Просмотр">
+			<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personServiceView.showDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+		</p:column>
 
-			<p:column styleClass="ui_button_column">
-<!-- 				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonProfession(personProfession)}" update=":#{cc.clientId}" process="@this" /> -->
-			</p:column>
+		<p:column styleClass="ui_button_column">
+			<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonService(personService)}" update="table" process="@this" />
+		</p:column>
 
-			<f:facet name="footer" style="text-align:right;">
-				<p:commandButton value="Добавить" actionListener="#{cc.attrs.addActionListener}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
-			</f:facet>
-		</p:dataTable>
-	</div>
+		<f:facet name="footer" style="text-align:right;">
+			<p:commandButton value="Добавить" actionListener="#{cc.attrs.addActionListener}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
+		</f:facet>
+	</p:dataTable>
 </composite:implementation>
 </html>

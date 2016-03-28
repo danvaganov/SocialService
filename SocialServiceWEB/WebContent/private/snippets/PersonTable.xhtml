@@ -34,7 +34,7 @@
 			</p:column>
 
 			<p:rowExpansion>
-				<ccomp:personServiceTable person="#{person}" selection="#{personServiceTableView.selection}" addActionListener="#{personServiceTableView.prepareInsert(person)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm"/>
+				<ccomp:personServiceTable id="personServiceTable" person="#{person}" selection="#{personServiceTableView.selection}" addActionListener="#{personServiceTableView.prepareInsert(person)}" oncomplete="PF('personServiceDialog').show()" update=":personServiceDialogForm"/>
 			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
@@ -57,7 +57,7 @@
 		<h:form id="personServiceDialogForm">
 			<ccomp:personService id="personService" personService="#{personServiceTableView.selection}" serviceCompleteMethod="#{serviceBean.complete}" organizationCompleteMethod="#{organizationBean.complete}" fileUploadHandler="#{personServiceBean.handleFileUpload}"/>
 			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton value="Ok" actionListener="#{personView.update()}" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" process="@(:input:not(.noupdate))" />
+				<p:commandButton value="Ok" actionListener="#{personTableView.update()}" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" process="@(:input:not(.noupdate))" />
 				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />
 			</p:outputPanel>
 		</h:form>
