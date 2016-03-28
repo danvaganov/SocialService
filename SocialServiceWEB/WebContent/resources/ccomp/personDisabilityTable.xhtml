@@ -7,7 +7,7 @@
 <composite:interface>
 	<composite:attribute name="person" />
 	<composite:attribute name="selection" />
-	<composite:attribute name="addActionListener" default="null" />
+	<composite:attribute name="addActionListener" default="null" method-signature="void actionListener(javax.faces.event.ActionEvent)"/>
 	<composite:attribute name="oncomplete" />
 	<composite:attribute name="update" />
 </composite:interface>
@@ -15,7 +15,7 @@
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:dataTable value="#{cc.attrs.person.personDisabilityList}" selection="#{personDisabilityBean.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
+		<p:dataTable value="#{cc.attrs.person.personDisabilityList}" selection="#{cc.attrs.selection}" var="personDisability" rowKey="#{personDisability.id}" selectionMode="single">
 			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
 
 			<p:column headerText="Установлено">

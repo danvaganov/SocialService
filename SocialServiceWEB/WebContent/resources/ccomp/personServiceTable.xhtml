@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite">
+
+<!-- INTERFACE -->
+<composite:interface>
+	<composite:attribute name="person" />
+	<composite:attribute name="selection" />
+	<composite:attribute name="addActionListener" default="null" method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="oncomplete" />
+	<composite:attribute name="update" />
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+	<p:dataTable id="table" styleClass="servtable" value="#{cc.attrs.person.personServicetList}" selection="#{cc.attrs.selection}" var="personService" rowKey="#{personService.id}" selectionMode="single">
+		<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
+
+		<p:column headerText="Наименование">
+			<h:outputText value="#{personService.service.name}" />
+		</p:column>
+
+		<p:column headerText="Дата добавления" width="15%">
+			<h:outputText value="#{personService.date}">
+				<f:convertDateTime pattern="dd.MM.yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:column headerText="Статус">
+			<h:outputText value="#{personService.status.label}" />
+		</p:column>
+
+		<p:column headerText="Поставщик">
+			<h:outputText value="#{personService.organization.nameOrganization}" />
+		</p:column>
+
+		<p:column styleClass="ui_button_column" headerText="Просмотр">
+			<p:commandButton rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personServiceView.showDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+		</p:column>
+
+		<p:column styleClass="ui_button_column">
+			<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonService(personService)}" update="table" process="@this" />
+		</p:column>
+
+		<f:facet name="footer" style="text-align:right;">
+			<p:commandButton value="Добавить" actionListener="#{cc.attrs.addActionListener}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
+		</f:facet>
+	</p:dataTable>
+</composite:implementation>
+</html>

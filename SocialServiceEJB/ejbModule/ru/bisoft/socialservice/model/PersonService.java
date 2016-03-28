@@ -146,7 +146,10 @@ public class PersonService implements Serializable{
 			return cssColor;
 		}
 	}
-
+	public static PersonServiceStatus[] getPersonServiceStatusArray()
+	{
+		return PersonServiceStatus.values();
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -2,67 +2,77 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:ccomp="http://java.sun.com/jsf/composite/ccomp">
 	<p:tabView id="personTabView" dynamic="true">
 		<p:tab title="Основные сведения">
-			<!-- Основные сведения -->
-			<ccomp:person person="#{personView.person}" />
+			<p:panelGrid>
+				<p:row>
+					<!-- Фото -->
+					<p:column style="text-align:center;width:140px;height:140px;padding:0;">
+						<p:graphicImage cache="false" value="#{personTableView.selection.foto != null ? personView.foto : resource['img:camera_400.png']}" style="height:140px;" />
+					</p:column>
+					<!-- Основные сведения -->
+					<p:column>
+						<ccomp:person person="#{personTableView.selection}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
 			<!-- Паспортные данные -->
-			<ccomp:passport passport="#{personView.person.passport}" />
+			<ccomp:passport passport="#{personTableView.selection.passport}" />
 		</p:tab>
 		<!-- Образование -->
 		<p:tab title="Образование">
-			<ccomp:personEducationTable id="personEducationTable" person="#{personView.person}" selection="#{personEducationView.personEducation}" oncomplete="PF('personEducationDialog').show()" update="@form:personTabView:personEducation"/>
+			<ccomp:personEducationTable id="personEducationTable" person="#{personTableView.selection}" selection="#{personEducationTableView.selection}" oncomplete="PF('personEducationDialog').show()" update="personEducation" addActionListener="#{personEducationTableView.prepareInsert(personTableView.selection)}"/>
 
 			<p:dialog header="Образование" widgetVar="personEducationDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
-				<ccomp:personEducation id="personEducation" personEducation="#{personEducationView.personEducation}" educationCompleteMethod="#{personEducationView.complete}" />
+				<ccomp:personEducation id="personEducation" personEducation="#{personEducationTableView.selection}" educationCompleteMethod="#{personEducationView.complete}" />
 				<p:outputPanel style="text-align:right;padding:2px;">
-					<p:commandButton value="Ok" oncomplete="PF('personEducationDialog').hide()" update="@form:personTabView:personEducationTable" process="@form:personTabView:personEducation" />
+					<p:commandButton value="Ok" actionListener="#{personEducationTableView.update()}" oncomplete="PF('personEducationDialog').hide()" update="personEducationTable:table" process="@this @form:personTabView:personEducation" />
 					<p:commandButton value="Cancel" onclick="PF('personEducationDialog').hide()" process="@none" />
 				</p:outputPanel>
 			</p:dialog>
 		</p:tab>
 		<!-- Инвалидность -->
 		<p:tab title="Инвалидность">
-			<ccomp:personDisabilityTable id="personDisabilityTable" person="#{personView.person}" selection="#{personDisabilityBean.selection}" oncomplete="PF('personDisabilityDialog').show()" update="@form:personTabView:personDisability" />
+			<ccomp:personDisabilityTable id="personDisabilityTable" person="#{personTableView.selection}" selection="#{personDisabilityTableView.selection}" oncomplete="PF('personDisabilityDialog').show()" update="@form:personTabView:personDisability"  addActionListener="#{personDisabilityTableView.prepareInsert(personTableView.selection)}"/>
 
 			<p:dialog header="Инвалидность" widgetVar="personDisabilityDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
-				<ccomp:personDisability id="personDisability" personDisability="#{personDisabilityBean.selection}" />
+				<ccomp:personDisability id="personDisability" personDisability="#{personDisabilityTableView.selection}" />
 				<p:outputPanel style="text-align:right;padding:2px;">
-					<p:commandButton value="Ok" oncomplete="PF('personDisabilityDialog').hide()" update="@form:personTabView:personDisabilityTable" process="@form:personTabView:personDisability" />
+					<p:commandButton value="Ok" actionListener="#{personDisabilityTableView.update()}" oncomplete="PF('personDisabilityDialog').hide()" update="@form:personTabView:personDisabilityTable" process="@this @form:personTabView:personDisability" />
 					<p:commandButton value="Cancel" onclick="PF('personDisabilityDialog').hide()" process="@none" />
 				</p:outputPanel>
 			</p:dialog>
 		</p:tab>
 		<!-- Источники дохода -->
 		<p:tab title="Источники дохода">
-			<ccomp:personIncomeTable id="personIncomeTable" person="#{personView.person}" selection="#{personIncomeBean.selection}" oncomplete="PF('personIncomeDialog').show()" update="@form:personTabView:personIncome" />
+			<ccomp:personIncomeTable id="personIncomeTable" person="#{personTableView.selection}" selection="#{personIncomeTableView.selection}" oncomplete="PF('personIncomeDialog').show()" update="@form:personTabView:personIncome" addActionListener="#{personIncomeTableView.prepareInsert(personTableView.selection)}"/>
 
 			<p:dialog header="Источники дохода" widgetVar="personIncomeDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
-				<ccomp:personIncome id="personIncome" personIncome="#{personIncomeBean.selection}" incomeCompleteMethod="#{incomeBean.complete}" />
+				<ccomp:personIncome id="personIncome" personIncome="#{personIncomeTableView.selection}" incomeCompleteMethod="#{personIncomeView.complete}" />
 				<p:outputPanel style="text-align:right;padding:2px;">
-					<p:commandButton value="Ok" oncomplete="PF('personIncomeDialog').hide()" update="@form:personTabView:personIncomeTable" process="@form:personTabView:personIncome" />
+					<p:commandButton value="Ok" actionListener="#{personIncomeTableView.update()}" oncomplete="PF('personIncomeDialog').hide()" update="@form:personTabView:personIncomeTable" process="@this @form:personTabView:personIncome" />
 					<p:commandButton value="Cancel" onclick="PF('personIncomeDialog').hide()" process="@none" />
 				</p:outputPanel>
 			</p:dialog>
 		</p:tab>
 		<!-- Профессии -->
 		<p:tab title="Профессии">
-			<ccomp:personProfessionTable id="personProfessionTable" person="#{personView.person}" selection="#{personProfessionBean.selection}" oncomplete="PF('personProfessionDialog').show()" update="@form:personTabView:personProfession" />
+			<ccomp:personProfessionTable id="personProfessionTable" person="#{personTableView.selection}" selection="#{personProfessionTableView.selection}" oncomplete="PF('personProfessionDialog').show()" update="@form:personTabView:personProfession" addActionListener="#{personProfessionTableView.prepareInsert(personTableView.selection)}"/>
 
 			<p:dialog header="Источники дохода" widgetVar="personProfessionDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
-				<ccomp:personProfession id="personProfession" personProfession="#{personProfessionBean.selection}" incomeCompleteMethod="#{incomeBean.complete}" />
+				<ccomp:personProfession id="personProfession" personProfession="#{personProfessionTableView.selection}" incomeCompleteMethod="#{incomeBean.complete}" professionCompleteMethod="#{personProfessionView.complete}" />
 				<p:outputPanel style="text-align:right;padding:2px;">
-					<p:commandButton value="Ok" oncomplete="PF('personProfessionDialog').hide()" update="@form:personTabView:personProfessionTable" process="@form:personTabView:personProfession" />
+					<p:commandButton value="Ok" actionListener="#{personProfessionTableView.update()}" oncomplete="PF('personProfessionDialog').hide()" update="@form:personTabView:personProfessionTable" process="@this @form:personTabView:personProfession" />
 					<p:commandButton value="Cancel" onclick="PF('personProfessionDialog').hide()" process="@none" />
 				</p:outputPanel>
 			</p:dialog>
 		</p:tab>
 		<!-- Документы -->
 		<p:tab title="Документы">
-			<ccomp:personDocumentTable id="personDocumentTable" person="#{personView.person}" selection="#{personDocumentBean.selection}" oncomplete="PF('personDocumentDialog').show()" update="@form:personTabView:personDocument" />
+			<ccomp:personDocumentTable id="personDocumentTable" person="#{personTableView.selection}" selection="#{personDocumentTableView.selection}" oncomplete="PF('personDocumentDialog').show()" update="@form:personTabView:personDocument" addActionListener="#{personDocumentTableView.prepareInsert(personTableView.selection)}"/>
 
 			<p:dialog header="Документы" widgetVar="personDocumentDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
-				<ccomp:personDocument id="personDocument" personDocument="#{personDocumentBean.selection}"/>
+				<ccomp:personDocument id="personDocument" personDocument="#{personDocumentTableView.selection}" />
 				<p:outputPanel style="text-align:right;padding:2px;">
-					<p:commandButton value="Ok" oncomplete="PF('personDocumentDialog').hide()" update="@form:personTabView:personDocumentTable" process="@form:personTabView:personDocument" />
+					<p:commandButton value="Ok" actionListener="#{personDocumentTableView.update()}" oncomplete="PF('personDocumentDialog').hide()" update="@form:personTabView:personDocumentTable" process="@this @form:personTabView:personDocument" />
 					<p:commandButton value="Cancel" onclick="PF('personDocumentDialog').hide()" process="@none" />
 				</p:outputPanel>
 			</p:dialog>

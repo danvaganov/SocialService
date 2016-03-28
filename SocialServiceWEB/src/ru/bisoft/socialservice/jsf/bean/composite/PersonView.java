@@ -1,6 +1,11 @@
 package ru.bisoft.socialservice.jsf.bean.composite;
 
+import java.io.ByteArrayInputStream;
+
 import javax.ejb.EJB;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import ru.bisoft.socialservice.ejb.dao.PersonEJB;
 import ru.bisoft.socialservice.jsf.bean.LoginBean;
@@ -32,6 +37,10 @@ public class PersonView {
 			personEJB.update(person);
 	}
 
+	public StreamedContent getFoto() {
+		return new DefaultStreamedContent(new ByteArrayInputStream(person.getFoto()), "image/png");
+	}
+	
 	public LoginBean getLoginBean() {
 		return loginBean;
 	}

@@ -111,20 +111,7 @@ public class PersonBean extends LazyDataModel<Person> {
 		selection.getPersonOrganizationList().add(personOrganization);
 	}
 
-	public void showDocument(PersonDocument personDocument) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		System.err.println(personDocument.getCopy().length);
-		ExternalContext externalContext = context.getExternalContext();
-		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
-		try {
-			httpServletResponse.reset();
-			httpServletResponse.addHeader("Content-Type", "application/pdf");
-			httpServletResponse.getOutputStream().write(personDocument.getCopy());
-			context.responseComplete();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	public void showServiceDocument(PersonService personService){
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -145,7 +132,5 @@ public class PersonBean extends LazyDataModel<Person> {
 		personEJB.update(personService.getPerson());
 	}
 
-	public void onRowToggle(ToggleEvent event) {
-		selection = (Person) event.getData();
-	}
+
 }
