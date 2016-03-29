@@ -12,31 +12,6 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>personBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>loginBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
-   <value>#{loginBean}</value>
-  </managed-property>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>personEducationBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonEducationBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>educationBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.EducationBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>educationConverter</managed-bean-name>
   <managed-bean-class>ru.bisoft.socialservice.jsf.converter.EducationConverter</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
@@ -45,31 +20,6 @@
   <managed-bean-name>XMLDataBean</managed-bean-name>
   <managed-bean-class>ru.bisoft.socialservice.jsf.bean.XMLDataBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>personDisabilityBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonDisabilityBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>professionBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.ProfessionBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>personProfessionBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonProfessionBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>professionConverter</managed-bean-name>
@@ -82,31 +32,6 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>personIncomeBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonIncomeBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>incomeBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.IncomeBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>personDocumentBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonDocumentBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>serviceBean</managed-bean-name>
   <managed-bean-class>ru.bisoft.socialservice.jsf.bean.ServiceBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
@@ -115,21 +40,6 @@
  	<managed-bean-name>userBean</managed-bean-name>
  	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.UserBean</managed-bean-class>
  	<managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>personServiceBean</managed-bean-name>
-  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.PersonServiceBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-  <managed-property>
-   <property-name>personBean</property-name>
-   <property-class>ru.bisoft.socialservice.jsf.bean.PersonBean</property-class>
-   <value>#{personBean}</value>
-  </managed-property>
-  <managed-property>
-  	<property-name>loginBean</property-name>
-  	<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
-  	<value>#{loginBean}</value>
-  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>organizationConverter</managed-bean-name>
@@ -220,6 +130,21 @@
  	<managed-bean-name>personServiceView</managed-bean-name>
  	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceView</managed-bean-class>
  	<managed-bean-scope>session</managed-bean-scope>
+ 	<managed-property>
+ 		<property-name>personServiceTableView</property-name>
+ 		<property-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceTableView</property-class>
+ 		<value>#{personServiceTableView}</value>
+ 	</managed-property>
+ </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>personServiceDataGridView</managed-bean-name>
+ 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceDataGridView</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ 	<managed-property>
+ 		<property-name>loginBean</property-name>
+ 		<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+ 		<value>#{loginBean}</value>
+ 	</managed-property>
  </managed-bean>
  <application/>
 </faces-config>

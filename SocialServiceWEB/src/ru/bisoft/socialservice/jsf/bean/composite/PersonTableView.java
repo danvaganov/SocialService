@@ -63,6 +63,10 @@ public class PersonTableView extends LazyDataModel<Person>{
 		}
 	}
 
+	public void deletePerson(Person person) {
+		personEJB.delete(person.getKeyPerson());
+	}
+	
 	public void onRowToggle(ToggleEvent event) {
 		selection = (Person) event.getData();
 	}

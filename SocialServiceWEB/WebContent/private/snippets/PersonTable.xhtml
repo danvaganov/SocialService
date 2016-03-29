@@ -30,7 +30,7 @@
 			</p:column>
 
 			<p:column styleClass="ui_button_column">
-				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personBean.deletePerson(person)}" update=":personTableForm :navigationFrom" />
+				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{personTableView.deletePerson(person)}" update=":personTableForm :navigationFrom" />
 			</p:column>
 
 			<p:rowExpansion>
@@ -38,7 +38,7 @@
 			</p:rowExpansion>
 
 			<f:facet name="footer" style="text-align:right;">
-				<p:commandButton value="Добавить новый пункт" actionListener="#{personView.prepareInsert()}" oncomplete="PF('personDialog').show()" />
+				<p:commandButton value="Добавить новый пункт" actionListener="#{personTableView.prepareInsert()}" oncomplete="PF('personDialog').show()" />
 			</f:facet>
 		</p:dataTable>
 	</h:form>
@@ -47,7 +47,7 @@
 		<h:form id="personDialogForm">
 			<ui:include src="/private/snippets/PersonView.xhtml" />
 			<p:outputPanel style="text-align:right;padding:2px;">
-				<p:commandButton value="Ok" actionListener="#{personTableView.update()}" oncomplete="PF('personDialog').hide()" update=":personTableForm:personTable" process="@form" />
+				<p:commandButton value="Ok" actionListener="#{personServiceTableView.update()}" oncomplete="PF('personDialog').hide()" update=":personTableForm:personTable" process="@form" />
 				<p:commandButton value="Cancel" onclick="PF('personDialog').hide()" process="@none" />
 			</p:outputPanel>
 		</h:form>
@@ -55,7 +55,7 @@
 
 	<p:dialog id="personServiceDialog" header="Мероприятие" widgetVar="personServiceDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500px">
 		<h:form id="personServiceDialogForm">
-			<ccomp:personService id="personService" personService="#{personServiceTableView.selection}" serviceCompleteMethod="#{serviceBean.complete}" organizationCompleteMethod="#{organizationBean.complete}" fileUploadHandler="#{personServiceBean.handleFileUpload}"/>
+			<ccomp:personService id="personService" personService="#{personServiceTableView.selection}" serviceCompleteMethod="#{serviceBean.complete}" organizationCompleteMethod="#{organizationBean.complete}" fileUploadHandler="#{personServiceView.handleFileUpload}"/>
 			<p:outputPanel style="text-align:right;padding:2px;">
 				<p:commandButton value="Ok" actionListener="#{personTableView.update()}" oncomplete="PF('personServiceDialog').hide()" update="@(.servtable)" process="@(:input:not(.noupdate))" />
 				<p:commandButton value="Cancel" onclick="PF('personServiceDialog').hide()" process="@none" />

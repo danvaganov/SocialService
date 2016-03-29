@@ -92,45 +92,6 @@ public class PersonBean extends LazyDataModel<Person> {
 		this.loginBean = loginBean;
 	}
 
-	public void updatePerson() {
-		personEJB.update(selection);
-	}
-
-	public void deletePerson(Person person) {
-		personEJB.delete(person.getKeyPerson());
-	}
-
-	public void prepareInsert() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Successful", "Your message: " + selection));
-
-		selection = new Person();
-		PersonOrganization personOrganization = new PersonOrganization();
-		personOrganization.setPerson(selection);
-		personOrganization.setOrganization(loginBean.gettUser().getEmployee().getOrganization());
-		selection.getPersonOrganizationList().add(personOrganization);
-	}
-
-
-	
-	public void showServiceDocument(PersonService personService){
-		FacesContext context = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = context.getExternalContext();
-		HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
-		try {
-			httpServletResponse.reset();
-			httpServletResponse.addHeader("Content-Type", "application/pdf");
-			httpServletResponse.getOutputStream().write(personService.getDocument());
-			context.responseComplete();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void removePersonService(PersonService personService) {
-		personService.getPerson().removePersonService(personService);
-		personEJB.update(personService.getPerson());
-	}
 
 
 }
