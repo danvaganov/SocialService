@@ -26,34 +26,27 @@
 						<h:outputText value="Организация:" />
 					</p:column>
 					<p:column style="font-weight: bold;">
-						<p:autoComplete dropdown="true" value="#{userBean.selection.employee.organization}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{organizationConverter}" completeMethod="#{organizationBean.complete}" size="50" />
+						<p:autoComplete dropdown="true" value="#{userBean.selection.employee.organization}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{organizationConverter}" completeMethod="#{organizationBean.complete}" size="50" >
+							<p:ajax listener="#{userBean.onOrganizationChange}"></p:ajax>
+						</p:autoComplete>
 					</p:column>
 				</p:row>
 				
-				<p:row>
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Фамилия:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="surname" value="#{userBean.selection.employee.surnameEmployee}" />
-					</p:column>
-				</p:row>
+<!-- 				<p:row> -->
+<!-- 					<p:column style="font-weight: bold;"> -->
+<!-- 						<h:outputText value="ФИО _0:" /> -->
+<!-- 					</p:column> -->
+<!-- 					<p:column style="font-weight: bold;"> -->
+<!-- 						<p:autoComplete id="fio" dropdown="true" value="#{userBean.selection.employee}" var="e" itemValue="#{e}" itemLabel="#{e}" converter="#{userConverter}" completeMethod="#{userBean.complete}" size="50" /> -->
+<!-- 					</p:column> -->
+<!-- 				</p:row> -->
 				
 				<p:row>
 					<p:column style="font-weight: bold;">
-						<h:outputText value="Имя:" />
+						<h:outputText value="ФИО:" />
 					</p:column>
 					<p:column style="font-weight: bold;">
-						<p:inputText id="name" value="#{userBean.selection.employee.nameEmployee}" />
-					</p:column>
-				</p:row>
-				
-				<p:row>
-					<p:column style="font-weight: bold;">
-						<h:outputText value="Отчество:" />
-					</p:column>
-					<p:column style="font-weight: bold;">
-						<p:inputText id="patronymic" value="#{userBean.selection.employee.patronymicEmployee}" />
+						<p:inputText id="employee" value="#{userBean.selection.employee.surnameEmployee} #{userBean.selection.employee.nameEmployee} #{userBean.selection.employee.patronymicEmployee}" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>

@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
+import ru.bisoft.socialservice.ejb.dao.EmployeeEJB;
+import ru.bisoft.socialservice.ejb.dao.OrganizationEJB;
 import ru.bisoft.socialservice.ejb.dao.TUserEJB;
 import ru.bisoft.socialservice.model.TUser;
 
@@ -21,7 +23,13 @@ public class UserBean extends  LazyDataModel<TUser> {
 	@EJB
 	TUserEJB tUserEJB;
 	
+	OrganizationEJB organizationEJB;
+	
+	EmployeeEJB employeeEJB;
+	
 	TUser selection;
+	
+	//
 	
 	public UserBean() {
 		super();
@@ -75,9 +83,9 @@ public class UserBean extends  LazyDataModel<TUser> {
 	public void prepareInsert()
 	{
 		selection = new TUser();
-//		PersonOrganization personOrganization = new PersonOrganization();
-//		personOrganization.setPerson(selection);
-//		personOrganization.setOrganization(loginBean.gettUser().getEmployee().getOrganization());
-//		selection.getPersonOrganizations().add(personOrganization);
+	}
+	
+	public void onOrganizationChange() {
+		System.err.println("Organization select");
 	}
 }

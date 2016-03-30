@@ -112,9 +112,9 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>userBean</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.UserBean</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>userBean</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.UserBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>personServiceBean</managed-bean-name>
@@ -126,9 +126,9 @@
    <value>#{personBean}</value>
   </managed-property>
   <managed-property>
-  	<property-name>loginBean</property-name>
-  	<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
-  	<value>#{loginBean}</value>
+   <property-name>loginBean</property-name>
+   <property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+   <value>#{loginBean}</value>
   </managed-property>
  </managed-bean>
  <managed-bean>
@@ -147,79 +147,84 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personEducationView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonEducationView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personEducationView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonEducationView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
- 	<managed-property>
- 		<property-name>loginBean</property-name>
- 		<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
- 		<value>#{loginBean}</value>
- 	</managed-property>
+  <managed-bean-name>personView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>loginBean</property-name>
+   <property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+   <value>#{loginBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personDocumentView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDocumentView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personDocumentView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDocumentView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personEducationTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonEducationTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personEducationTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonEducationTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personDisabilityTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDisabilityTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personDisabilityTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDisabilityTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personDocumentTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDocumentTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personDocumentTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonDocumentTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personIncomeTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonIncomeTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personIncomeTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonIncomeTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personProfessionTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonProfessionTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personProfessionTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonProfessionTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personIncomeView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonIncomeView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personIncomeView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonIncomeView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personProfessionView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonProfessionView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personProfessionView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonProfessionView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
- 	<managed-property>
- 		<property-name>loginBean</property-name>
- 		<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
- 		<value>#{loginBean}</value>
- 	</managed-property>
+  <managed-bean-name>personTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>loginBean</property-name>
+   <property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
+   <value>#{loginBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personServiceTableView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceTableView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personServiceTableView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceTableView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
- 	<managed-bean-name>personServiceView</managed-bean-name>
- 	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceView</managed-bean-class>
- 	<managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-name>personServiceView</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonServiceView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>userConverter</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.converter.UserConverter</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <application/>
 </faces-config>
