@@ -11,8 +11,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
@@ -77,7 +75,7 @@ public class Person implements Serializable{
 	@OneToMany(mappedBy = "person", orphanRemoval = true, cascade = ALL)
 	private List<PersonDisability> personDisabilityList;
 	
-	@OneToMany(mappedBy = "person", orphanRemoval = true)
+	@OneToMany(mappedBy = "person", orphanRemoval = true, cascade = ALL)
 	private List<PersonOrganization> personOrganizationList;
 	
 	@OneToMany(mappedBy = "person", orphanRemoval = true, cascade = ALL)
@@ -172,7 +170,6 @@ public class Person implements Serializable{
 	public void setPersonDocumentList(List<PersonDocument> personDocumentList) {
 		this.personDocumentList = personDocumentList;
 	}
-	
 	public List<PersonService> getPersonServicetList() {
 		return personServicetList;
 	}
@@ -183,6 +180,12 @@ public class Person implements Serializable{
 		super();
 		this.passport = new Passport();
 		this.personOrganizationList = new ArrayList<PersonOrganization>();
+		this.personEducationList = new ArrayList<PersonEducation>();
+		this.personDisabilityList = new ArrayList<PersonDisability>();
+		this.personIncomeList = new ArrayList<PersonIncome>();
+		this.personProfessionList = new ArrayList<PersonProfession>();
+		this.personDocumentList = new ArrayList<PersonDocument>();
+		this.personServicetList = new ArrayList<PersonService>();
 	}
 	public void removePersonEducation(PersonEducation personEducation)
 	{
@@ -230,8 +233,6 @@ public class Person implements Serializable{
 	}
 	public void removePersonService(PersonService personService)
 	{
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Delete Service", ""));
 		this.personServicetList.remove(personService);
 	}
 	public void addPersonOrganization(PersonOrganization personOrganization)
@@ -244,5 +245,4 @@ public class Person implements Serializable{
 				+ ", patronymicPerson=" + patronymicPerson + ", birthdayPerson=" + birthdayPerson + ", foto="
 				+ Arrays.toString(foto) + ", passport=" + passport + "]";
 	}
-
 }

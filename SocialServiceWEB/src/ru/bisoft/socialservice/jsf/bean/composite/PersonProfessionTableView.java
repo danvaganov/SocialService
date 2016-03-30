@@ -20,10 +20,10 @@ public class PersonProfessionTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonProfession(selection);
-			personProfessionEJB.insert(selection);
+			//personProfessionEJB.insert(selection);
 		} else
 		{
-			personProfessionEJB.update(selection);
+			//personProfessionEJB.update(selection);
 		}
 	}
 

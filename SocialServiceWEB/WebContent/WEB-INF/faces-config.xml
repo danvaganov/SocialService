@@ -66,9 +66,9 @@
  	<managed-bean-class>ru.bisoft.socialservice.jsf.bean.composite.PersonView</managed-bean-class>
  	<managed-bean-scope>session</managed-bean-scope>
  	<managed-property>
- 		<property-name>loginBean</property-name>
- 		<property-class>ru.bisoft.socialservice.jsf.bean.LoginBean</property-class>
- 		<value>#{loginBean}</value>
+ 		<property-name>personTableView</property-name>
+ 		<property-class>ru.bisoft.socialservice.jsf.bean.composite.PersonTableView</property-class>
+ 		<value>#{personTableView}</value>
  	</managed-property>
  </managed-bean>
  <managed-bean>

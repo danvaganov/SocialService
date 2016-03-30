@@ -20,10 +20,10 @@ public class PersonIncomeTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonIncome(selection);
-			personIncomeEJB.insert(selection);
+			//personIncomeEJB.insert(selection);
 		} else
 		{
-			personIncomeEJB.update(selection);
+			//personIncomeEJB.update(selection);
 		}
 	}
 

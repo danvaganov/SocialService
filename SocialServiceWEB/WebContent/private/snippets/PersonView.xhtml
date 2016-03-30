@@ -10,12 +10,12 @@
 					</p:column>
 					<!-- Основные сведения -->
 					<p:column>
-						<ccomp:person person="#{personTableView.selection}" />
+						<ccomp:personInitial person="#{personTableView.selection}" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
 			<!-- Паспортные данные -->
-			<ccomp:passport passport="#{personTableView.selection.passport}" />
+			<ccomp:personPassport passport="#{personTableView.selection.passport}" />
 		</p:tab>
 		<!-- Образование -->
 		<p:tab title="Образование">

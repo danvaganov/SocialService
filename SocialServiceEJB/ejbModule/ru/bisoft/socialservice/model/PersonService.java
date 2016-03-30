@@ -18,11 +18,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.NamedQueries;
 
 @Entity
 @Table(name = "PERSON_SERVICE")
 @SequenceGenerator(name = "PERSON_SERVICE_GEN_ID", sequenceName = "PERSON_SERVICE_GEN_ID", allocationSize = 1, initialValue = 1)
-@NamedQuery(name = "PersonService.findByOrganization", query = "SELECT PS FROM PersonService PS WHERE PS.organization = :organization")
+@NamedQueries({ 
+	@NamedQuery(name = "PersonService.findByOrganization", query = "SELECT PS FROM PersonService PS WHERE PS.organization = :organization ORDER BY PS.id DESC"), 
+	@NamedQuery(name = "PersonService.getCountByOrganization", query = "SELECT COUNT(PS) FROM PersonService PS WHERE PS.organization = :organization") 
+})
 public class PersonService implements Serializable{
 	/**
 	 * 

@@ -20,10 +20,10 @@ public class PersonDocumentTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonDocument(selection);
-			personDocumentEJB.insert(selection);
+			//personDocumentEJB.insert(selection);
 		} else
 		{
-			personDocumentEJB.update(selection);
+			//personDocumentEJB.update(selection);
 		}
 	}
 
