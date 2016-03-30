@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.LazyDataModel;
@@ -46,7 +48,7 @@ public class PersonTableView extends LazyDataModel<Person>{
 		return personEJB.findById(Integer.valueOf(rowKey));
 	}
 	
-	public void prepareInsert(Person person) {
+	public void prepareInsert() {
 		selection = new Person();
 		PersonOrganization personOrganization = new PersonOrganization();
 		personOrganization.setPerson(selection);
@@ -63,6 +65,10 @@ public class PersonTableView extends LazyDataModel<Person>{
 		}
 	}
 
+	public void deletePerson(Person person) {
+		personEJB.delete(person.getKeyPerson());
+	}
+	
 	public void onRowToggle(ToggleEvent event) {
 		selection = (Person) event.getData();
 	}
@@ -72,6 +78,7 @@ public class PersonTableView extends LazyDataModel<Person>{
 	}
 
 	public void setSelection(Person selection) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(selection.toString(), "Success"));
 		this.selection = selection;
 	}
 	

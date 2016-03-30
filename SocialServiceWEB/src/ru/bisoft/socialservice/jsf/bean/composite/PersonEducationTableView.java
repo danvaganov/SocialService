@@ -20,9 +20,9 @@ public class PersonEducationTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonEducation(selection);
-			personEducationEJB.insert(selection);
+			//personEducationEJB.insert(selection);
 		} else {
-			personEducationEJB.update(selection);
+			//personEducationEJB.update(selection);
 		}
 	}
 

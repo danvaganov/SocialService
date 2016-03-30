@@ -20,10 +20,10 @@ public class PersonDisabilityTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonDisability(selection);
-			personDisabilityEJB.insert(selection);
+			//personDisabilityEJB.insert(selection);
 		} else
 		{
-			personDisabilityEJB.update(selection);
+			//personDisabilityEJB.update(selection);
 		}
 	}
 

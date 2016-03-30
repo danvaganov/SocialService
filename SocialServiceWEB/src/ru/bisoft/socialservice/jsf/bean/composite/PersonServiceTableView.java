@@ -21,8 +21,7 @@ public class PersonServiceTableView {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonService(selection);
 			personServiceEJB.insert(selection);
-		} else
-		{
+		} else {
 			personServiceEJB.update(selection);
 		}
 	}

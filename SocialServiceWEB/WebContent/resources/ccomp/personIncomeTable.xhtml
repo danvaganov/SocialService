@@ -15,7 +15,7 @@
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:dataTable value="#{cc.attrs.person.personIncomeList}" selection="#{cc.attrs.selection}" var="personIncome" rowKey="#{personIncome.id}" selectionMode="single">
+		<p:dataTable id="table" value="#{cc.attrs.person.personIncomeList}" selection="#{cc.attrs.selection}" var="personIncome" rowKey="#{personIncome.id}" selectionMode="single">
 			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
 
 			<p:column headerText="Источник">
@@ -33,7 +33,7 @@
 			</p:column>
 
 			<p:column styleClass="ui_button_column">
-				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonIncome(personIncome)}" update=":#{cc.clientId}" process="@this" />
+				<p:commandButton icon="ui-icon-trash" title="Удалить" actionListener="#{cc.attrs.person.removePersonIncome(personIncome)}" update="table" process="@this" />
 			</p:column>
 
 			<f:facet name="footer" style="text-align:right;">
