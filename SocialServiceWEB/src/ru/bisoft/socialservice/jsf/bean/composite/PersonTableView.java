@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.ToggleEvent;
@@ -16,12 +15,12 @@ import ru.bisoft.socialservice.jsf.bean.LoginBean;
 import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonOrganization;
 
-public class PersonTableView extends LazyDataModel<Person>{
+public class PersonTableView extends LazyDataModel<Person> {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5482470382255953315L;
-	
+
 	@EJB
 	PersonEJB personEJB;
 	LoginBean loginBean;
@@ -30,12 +29,18 @@ public class PersonTableView extends LazyDataModel<Person>{
 
 	@Override
 	public List<Person> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-		return personEJB.find(loginBean.gettUser().getEmployee().getOrganization(), first, pageSize, filters);
+		if (FacesContext.getCurrentInstance().getExternalContext().isUserInRole("admin"))
+			return personEJB.find(null, first, pageSize, filters);
+		else
+			return personEJB.find(loginBean.gettUser().getEmployee().getOrganization(), first, pageSize, filters);
 	}
 
 	@Override
 	public int getRowCount() {
-		return personEJB.getCount(loginBean.gettUser().getEmployee().getOrganization()).intValue();
+		if (FacesContext.getCurrentInstance().getExternalContext().isUserInRole("admin"))
+			return personEJB.getCount().intValue();
+		else
+			return personEJB.getCount(loginBean.gettUser().getEmployee().getOrganization()).intValue();
 	}
 
 	@Override
@@ -47,7 +52,7 @@ public class PersonTableView extends LazyDataModel<Person>{
 	public Person getRowData(String rowKey) {
 		return personEJB.findById(Integer.valueOf(rowKey));
 	}
-	
+
 	public void prepareInsert() {
 		selection = new Person();
 		PersonOrganization personOrganization = new PersonOrganization();
@@ -59,8 +64,7 @@ public class PersonTableView extends LazyDataModel<Person>{
 	public void update() {
 		if (selection.getKeyPerson() == 0) {
 			personEJB.insert(selection);
-		} else
-		{
+		} else {
 			personEJB.update(selection);
 		}
 	}
@@ -68,20 +72,20 @@ public class PersonTableView extends LazyDataModel<Person>{
 	public void deletePerson(Person person) {
 		personEJB.delete(person.getKeyPerson());
 	}
-	
+
 	public void onRowToggle(ToggleEvent event) {
 		selection = (Person) event.getData();
 	}
-	
+
 	public Person getSelection() {
 		return selection;
 	}
 
 	public void setSelection(Person selection) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(selection.toString(), "Success"));
+		//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(selection.toString(), "Success"));
 		this.selection = selection;
 	}
-	
+
 	public LoginBean getLoginBean() {
 		return loginBean;
 	}

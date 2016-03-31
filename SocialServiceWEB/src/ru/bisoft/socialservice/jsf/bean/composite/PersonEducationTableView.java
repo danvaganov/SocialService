@@ -7,6 +7,7 @@ import ru.bisoft.socialservice.model.Person;
 import ru.bisoft.socialservice.model.PersonEducation;
 
 public class PersonEducationTableView {
+
 	@EJB
 	PersonEducationEJB personEducationEJB;
 
@@ -20,9 +21,9 @@ public class PersonEducationTableView {
 	public void update() {
 		if (selection.getId() == 0) {
 			selection.getPerson().addPersonEducation(selection);
-			//personEducationEJB.insert(selection);
+			// personEducationEJB.insert(selection);
 		} else {
-			//personEducationEJB.update(selection);
+			// personEducationEJB.update(selection);
 		}
 	}
 

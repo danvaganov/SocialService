@@ -77,10 +77,11 @@ public class PersonEJB {
 
 		CriteriaQuery<Person> query = cb.createQuery(Person.class);
 		Root<Person> root = query.from(Person.class);
-		Join<Person, PersonOrganization> join = root.join("personOrganizationList");
+		Join<Person, PersonOrganization> join = null;
+		if (organization != null) root.join("personOrganizationList");
 		query.select(root);
 		query.orderBy(cb.asc(root.get("keyPerson")));
-		predicateList.add(cb.equal(join.<String> get("organization"), organization));
+		if (organization != null) predicateList.add(cb.equal(join.<String> get("organization"), organization));
 
 		for (Map.Entry<String, Object> entry : filters.entrySet())
 			predicateList.add(cb.like(cb.lower(root.<String> get(entry.getKey())), entry.getValue().toString() + "%"));
@@ -112,5 +113,9 @@ public class PersonEJB {
 	// @Override
 	public Long getCount(Organization organization) {
 		return (Long) em.createNamedQuery("Person.getCountByOrganization").setParameter("organization", organization).getSingleResult();
+	}
+	
+	public Long getCount() {
+		return (Long) em.createNamedQuery("Person.getCount").getSingleResult();
 	}
 }

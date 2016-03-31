@@ -4,53 +4,57 @@
 	<h:form id="personServiceForm">
 		<p:dataGrid var="personService" value="#{personServiceDataGridView}" columns="1" layout="grid" rows="12" paginator="true" id="personServiceDataGrid" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="6,12,16" lazy="true">
 			<f:facet name="header">Назначенные мероприятия</f:facet>
-
-			<p:panel header="#{personService.person.surnamePerson} #{personService.person.namePerson} #{personService.person.patronymicPerson}">
-				<p:panelGrid style="text-align: center;  width: 100%">
-					<p:row>
-						<p:column>
-							<p:panelGrid style="text-align: left; width: 100%;">
-								<p:row>
-									<p:column style="width:20%">Мероприятие:</p:column>
-									<p:column>
-										<h:outputText value="#{personService.service.name}" styleClass="text-bold" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>Дата назначения:</p:column>
-									<p:column>
-										<h:outputText value="#{personService.date}" styleClass="text-bold">
-											<f:convertDateTime pattern="dd.MM.yyyy" />
-										</h:outputText>
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>Примечание:</p:column>
-									<p:column>
-										<h:outputText value="#{personService.comment}" styleClass="text-bold" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>Прикрепленный документ:</p:column>
-									<p:column>
-										<p:commandButton id="attachment" rendered="#{personService.document != null}" icon="ui-icon-search" value="Просмотр" action="#{personServiceView.showDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-						</p:column>
-						<p:column style="vertical-align:bottom; width: 12%">
-							<p:commandButton actionListener="#{personServiceTableView.setSelection(personService)}" oncomplete="PF('personServiceDialog').show()" value="Изменить" update=":personServiceDialogForm:personService" process="@this" />
-						</p:column>
-						<p:column style="vertical-align:bottom; width: 12%">
-							<p:commandButton actionListener="#{personTableView.setSelection(personService.person)}" oncomplete="PF('personDialog').show()" value="Просмотр ИП" update=":personDialogForm:personTabView" process="@this" />
-						</p:column>
-						<p:column style="vertical-align:bottom; width: 5%">Статус:</p:column>
-						<p:column style="vertical-align:bottom; width: 5%">
-							<h:outputText value="#{personService.status.label}" styleClass="text-bold" style="color: #{personService.status.cssColor}" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-			</p:panel>
+			<p:panelGrid style="text-align: left;  width: 100%">
+				<p:row>
+					<p:column colspan="5">
+						<div class="ui-widget-header">
+							<p:commandLink actionListener="#{personTableView.setSelection(personService.person)}" oncomplete="PF('personDialog').show()" update=":personDialogForm:personTabView" process="@this">
+								<p:graphicImage cache="true" value="#{resource['img:card.png']}" style="float:left; padding:10px;" />
+							</p:commandLink>
+							<p:outputLabel style="font-size: 20px; display: block;" value="#{personService.person.surnamePerson} #{personService.person.namePerson} #{personService.person.patronymicPerson}" />
+						</div>
+						<p:outputLabel for="serviceName" value="Мероприятие: " style="font-size: 15px; font-weight: bold;" />
+						<p:outputLabel id="serviceName" value="#{personService.service.name}" style="font-size: 15px;" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:panelGrid style="text-align: left;">
+							<p:row>
+								<p:column style="width: 10px%">Дата назначения:</p:column>
+								<p:column>
+									<h:outputText value="#{personService.date}" styleClass="text-bold">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="width: 10px%">Назначено:</p:column>
+								<p:column>
+									<h:outputText value="#{personService.organization.nameOrganization}" styleClass="text-bold" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>Примечание:</p:column>
+								<p:column>
+									<h:outputText value="#{personService.comment}" styleClass="text-bold" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="width: 70%">
+						<p:commandButton actionListener="#{personServiceTableView.setSelection(personService)}" oncomplete="PF('personServiceDialog').show()" value="Изменить" update=":personServiceDialogForm:personService" process="@this" />
+						<p:commandButton actionListener="#{personTableView.setSelection(personService.person)}" oncomplete="PF('personDialog').show()" value="Просмотр ИП" update=":personDialogForm:personTabView" process="@this" />
+						<p:commandButton id="attachment" disabled="#{personService.document == null}" icon="ui-icon-search" value="Вложение" action="#{personServiceView.showDocument(personService)}" process="@none" ajax="false" onclick="form.target='_blank'" />
+					</p:column>
+					<p:column style="width: 30%; text-align:right;">
+						<p:outputLabel for="status" value="Статус: " style="font-size: 20px; font-weight: bold;" />
+						<p:outputLabel id="status" value="#{personService.status.label}" style="font-size: 20px; font-weight: bold; color: #{personService.status.cssColor}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
 		</p:dataGrid>
 	</h:form>
 

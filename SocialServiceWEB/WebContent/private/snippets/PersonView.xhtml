@@ -19,7 +19,7 @@
 		</p:tab>
 		<!-- Образование -->
 		<p:tab title="Образование">
-			<ccomp:personEducationTable id="personEducationTable" person="#{personTableView.selection}" selection="#{personEducationTableView.selection}" oncomplete="PF('personEducationDialog').show()" update="@form:personTabView:personEducation" addActionListener="#{personEducationTableView.prepareInsert(personTableView.selection)}"/>
+			<ccomp:personEducationTable id="personEducationTable" person="#{personTableView.selection}" controller="#{personEducationTableView}" oncomplete="PF('personEducationDialog').show()" update="@form:personTabView:personEducation"/>
 
 			<p:dialog header="Образование" widgetVar="personEducationDialog" showEffect="fade" hideEffect="fade" resizable="false" width="500">
 				<ccomp:personEducation id="personEducation" personEducation="#{personEducationTableView.selection}" educationCompleteMethod="#{personEducationView.complete}" />
