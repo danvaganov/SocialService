@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:ccomp="http://java.sun.com/jsf/composite/ccomp">
 	<h:form id="personServiceForm">
+		<p:inputText value="#{personServiceDataGridView.filterString}" styleClass="noupdate" style="width:50%; margin: 10px">
+			<p:ajax event="keyup" delay="500" update="personServiceDataGrid" />
+		</p:inputText>
 		<p:dataGrid var="personService" value="#{personServiceDataGridView}" columns="1" layout="grid" rows="12" paginator="true" id="personServiceDataGrid" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="6,12,16" lazy="true">
-			<f:facet name="header">Назначенные мероприятия</f:facet>
 			<p:panelGrid style="text-align: left;  width: 100%">
 				<p:row>
 					<p:column colspan="5">

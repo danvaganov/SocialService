@@ -1,6 +1,7 @@
 package ru.bisoft.socialservice.jsf.bean.composite;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,12 @@ public class PersonServiceDataGridView extends LazyDataModel<PersonService> impl
 	@EJB
 	PersonServiceEJB personServiceEJB;
 	
+	private String filterString;
+	private Map<String, Object> globalFilters = new HashMap<String, Object> ();
+	
 	@Override
 	public List<PersonService> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-		return personServiceEJB.find(loginBean.gettUser().getEmployee().getOrganization(), first, pageSize, filters);
+		return personServiceEJB.find(loginBean.gettUser().getEmployee().getOrganization(), first, pageSize, globalFilters);
 	}
 	
 	@Override
@@ -40,5 +44,15 @@ public class PersonServiceDataGridView extends LazyDataModel<PersonService> impl
 
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
+	}
+
+	public String getFilterString() {
+		return filterString;
+	}
+
+	public void setFilterString(String filterString) {
+		globalFilters.clear();
+		globalFilters.put("surnamePerson", filterString);
+		this.filterString = filterString;
 	}
 }
