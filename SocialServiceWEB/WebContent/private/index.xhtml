@@ -13,23 +13,24 @@
 	<p:layout fullPage="true">
 
 		<p:layoutUnit position="north" size="100">
-			<ui:include src="/private/snippets/Header.xhtml" />
+			<ui:include src="/Header.xhtml" />
 		</p:layoutUnit>
 
 		<p:layoutUnit position="south" size="100">
-			<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-				<f:facet name="default">
-					<h:outputText value="Status: StandBy" />
-				</f:facet>
+<!-- 			<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;"> -->
+<!-- 				<f:facet name="default"> -->
+<!-- 					<h:outputText value="Status: StandBy" /> -->
+<!-- 				</f:facet> -->
 
-				<f:facet name="start">
-					<p:graphicImage library="gif" name="process.gif" />
-				</f:facet>
+<!-- 				<f:facet name="start"> -->
+<!-- 					<p:graphicImage library="gif" name="process.gif" /> -->
+<!-- 				</f:facet> -->
 
-				<f:facet name="complete">
-					<h:outputText value="Status: Completed" />
-				</f:facet>
-			</p:ajaxStatus>
+<!-- 				<f:facet name="complete"> -->
+<!-- 					<h:outputText value="Status: Completed" /> -->
+<!-- 				</f:facet> -->
+<!-- 			</p:ajaxStatus> -->
+			<ui:include src="/Footer.xhtml" />
 		</p:layoutUnit>
 
 		<p:layoutUnit position="west" size="200">
@@ -41,7 +42,6 @@
 				<ui:include src="#{mainContentBean.content}"></ui:include>
 			</h:panelGroup>
 		</p:layoutUnit>
-
 	</p:layout>
 </h:body>
 
