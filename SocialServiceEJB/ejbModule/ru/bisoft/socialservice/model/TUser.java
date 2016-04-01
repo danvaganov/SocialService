@@ -26,6 +26,10 @@ public class TUser implements Serializable {
 	@JoinColumn(name = "KEY_EMPLOYEE", referencedColumnName = "KEY_EMPLOYEE")
 	private Employee employee;
 	
+	@OneToOne
+	@JoinColumn(name = "USERID_TUSER", referencedColumnName = "USERID_TUSER")
+	private TGroup tGroup;
+	
 	private static final long serialVersionUID = 1L;
 
 	public TUser() {
@@ -54,5 +58,13 @@ public class TUser implements Serializable {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}   
+	}
+
+	public TGroup gettGroup() {
+		return tGroup;
+	}
+
+	public void settGroup(TGroup tGroup) {
+		this.tGroup = tGroup;
+	}  
 }

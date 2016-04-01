@@ -151,5 +151,10 @@
   <managed-bean-class>ru.bisoft.socialservice.jsf.converter.UserConverter</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>employeeConverter</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.converter.EmployeeConverter</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <application/>
 </faces-config>
