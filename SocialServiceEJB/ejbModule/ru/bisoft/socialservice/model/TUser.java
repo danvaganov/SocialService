@@ -26,8 +26,7 @@ public class TUser implements Serializable {
 	@JoinColumn(name = "KEY_EMPLOYEE", referencedColumnName = "KEY_EMPLOYEE")
 	private Employee employee;
 	
-	@OneToOne
-	@JoinColumn(name = "USERID_TUSER", referencedColumnName = "USERID_TUSER")
+	@OneToOne(mappedBy="tUser")
 	private TGroup tGroup;
 	
 	private static final long serialVersionUID = 1L;
