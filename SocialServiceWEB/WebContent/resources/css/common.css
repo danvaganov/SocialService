@@ -1,4 +1,5 @@
 .ui-widget {
+	font-family: trebuchet ms;
 	font-size: 80%;
 }
 
@@ -50,6 +51,12 @@
 	background-repeat: repeat;
 	background-attachment: fixed;
 	margin: 0 !important;
+}
+
+.ui-widget-content {
+    background: #eeeeee url("#{resource['img:bg2.png']}") scroll 50% bottom;
+    border: 1px solid #aaaaaa;
+    color: #222222;
 }
 
 .footer {

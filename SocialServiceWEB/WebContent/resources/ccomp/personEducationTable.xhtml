@@ -6,16 +6,15 @@
 <!-- INTERFACE -->
 <composite:interface>
 	<composite:attribute name="person" />
-	<composite:attribute name="selection" />
-	<composite:attribute name="addActionListener" default="null" method-signature="void actionListener(javax.faces.event.ActionEvent)"/>
 	<composite:attribute name="oncomplete" />
 	<composite:attribute name="update" />
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <!-- IMPLEMENTATION -->
 <composite:implementation>
 	<div id="#{cc.clientId}">
-		<p:dataTable id="table" value="#{cc.attrs.person.personEducationList}" selection="#{cc.attrs.selection}" var="personEducation" rowKey="#{personEducation.id}" selectionMode="single">
+		<p:dataTable id="table" value="#{cc.attrs.person.personEducationList}" selection="#{cc.attrs.controller.selection}" var="personEducation" rowKey="#{personEducation.id}" selectionMode="single">
 			<p:ajax event="rowSelect" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" />
 
 			<p:column headerText="Образование">
@@ -41,7 +40,7 @@
 			</p:column>
 
 			<f:facet name="footer" style="text-align:right;">
-				<p:commandButton value="Добавить" actionListener="#{cc.attrs.addActionListener}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
+				<p:commandButton value="Добавить" actionListener="#{cc.attrs.controller.prepareInsert(cc.attrs.person)}" oncomplete="#{cc.attrs.oncomplete}" update="#{cc.attrs.update}" process="@this" />
 			</f:facet>
 		</p:dataTable>
 	</div>
