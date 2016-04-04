@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="SocialService" packages="">
+	<Properties>
+		<Property name="log-path">C:/logs/</Property>
+	</Properties>
+	<Appenders>
+		<File name="File" fileName="${log-path}/app.log">
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+		</File>
+		<RollingFile name="RollingFile" fileName="${log-path}/SocialService.log"
+			filePattern="${log-path}/SocialService-%d{yyyy-MM-dd} %i.log">
+			<PatternLayout>
+				<pattern>%d{dd.MMM.yyyy HH:mm:ss}- %c{1}: %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root name="root" level="info" additivity="false">
+			<AppenderRef ref="RollingFile"></AppenderRef>
+		</Root>
+	</Loggers>
+</Configuration>

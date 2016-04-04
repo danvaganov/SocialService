@@ -10,10 +10,14 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ru.bisoft.socialservice.ejb.dao.TUserEJB;
 import ru.bisoft.socialservice.model.TUser;
 
 public class LoginBean implements Serializable {
+	private static final Logger logger = LogManager.getLogger(LoginBean.class);
 	/**
 	 * 
 	 */
@@ -44,13 +48,14 @@ public class LoginBean implements Serializable {
 	    FacesContext context = FacesContext.getCurrentInstance();
 	    ExternalContext externalContext = context.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-
+		logger.info(String.format("¬ход в систему: %s", username));
 		try {
 			request.login(username, password);
 			tUser = gettUser();
 			externalContext.getSessionMap().put("user", tUser);
 			externalContext.redirect(externalContext.getRequestContextPath() + "/private/index.xhtml");
 		} catch (ServletException e) {
+			logger.info(String.format("ќшибка входа в систему, логин не найден: %s", username));
 			context.addMessage(null, new FacesMessage("Unknown login"));
 		}
 	}
