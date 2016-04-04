@@ -156,5 +156,15 @@
   <managed-bean-class>ru.bisoft.socialservice.jsf.converter.EmployeeConverter</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>groupConverter</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.converter.GroupConverter</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>tGroupBean</managed-bean-name>
+  <managed-bean-class>ru.bisoft.socialservice.jsf.bean.TGroupBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <application/>
 </faces-config>

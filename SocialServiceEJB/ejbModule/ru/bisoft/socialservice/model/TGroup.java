@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,6 +17,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TGROUP")
+@NamedQueries({
+	@NamedQuery(name="TGroup.findAll", query="SELECT t FROM TGroup t order by t.groupIDTGroup")
+})
 public class TGroup implements Serializable {
 	
 	@Column(name = "GROUPID_TGROUP")
@@ -31,6 +36,11 @@ public class TGroup implements Serializable {
 		super();
 	}   
 	
+	public TGroup(String groupIDTGroup) {
+		super();
+		this.groupIDTGroup = groupIDTGroup;
+	}
+
 	public String getGroupIDTGroup() {
 		return this.groupIDTGroup;
 	}
@@ -44,5 +54,10 @@ public class TGroup implements Serializable {
 
 	public void setTUser(TUser tUser) {
 		this.tUser = tUser;
+	}
+
+	@Override
+	public String toString() {
+		return groupIDTGroup;
 	}
 }

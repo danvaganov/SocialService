@@ -33,8 +33,6 @@ public class UserBean extends  LazyDataModel<TUser> {
 	
 	EmployeeEJB employeeEJB;
 	
-	TGroupEJB tGroupEJB;
-	
 	TUser selection;
 	
 	Organization organization;
@@ -56,13 +54,6 @@ public class UserBean extends  LazyDataModel<TUser> {
 	public List<Employee> completeEmployee(String query)
 	{
 		return organization.getEmployees();
-	}
-	
-	public List<TGroup> completeGroup(String query)
-	{
-		Map<String, Object> filters = new HashMap<String, Object> ();
-		filters.put("groupIDTGroup", query);
-		return tGroupEJB.find(0, 10, filters);
 	}
 	
 	@Override

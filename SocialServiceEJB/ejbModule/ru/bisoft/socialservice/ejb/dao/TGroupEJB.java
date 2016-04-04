@@ -40,7 +40,7 @@ public class TGroupEJB {
 		CriteriaQuery<TGroup> query = cb.createQuery(TGroup.class);
 		Root<TGroup> root = query.from(TGroup.class);
 		query.select(root);
-		query.orderBy(cb.asc(root.get("groupIDTGroup")));
+		query.orderBy(cb.asc(root.get("tUser")));
 		
 		for (Map.Entry<String, Object> entry: filters.entrySet())
 			predicateList.add(cb.like(cb.lower(root.<String>get(entry.getKey())), entry.getValue().toString() + "%"));
@@ -48,6 +48,10 @@ public class TGroupEJB {
 		
 		return em.createQuery(query).setFirstResult(startIndex).setMaxResults(pageSize).getResultList();
 	}
+    
+    public List<TGroup> find(Integer startIndex, Integer pageSize) {
+    	return em.createNamedQuery("TGroup.findAll", TGroup.class).getResultList();
+    }
     
     public TGroup findById(Integer ID) {
 		return em.find(TGroup.class, ID);
